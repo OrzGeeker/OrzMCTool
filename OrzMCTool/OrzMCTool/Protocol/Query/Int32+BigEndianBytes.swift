@@ -9,6 +9,8 @@
 import Foundation
 
 extension Int32 {
+    
+    /// Int32整数转成大端存储格式的字节数组
     public var bigEndianBytes: [UInt8] {
         var bigEndianBytes = [UInt8]()
         for i in (0 ..< 4).reversed() {
@@ -18,6 +20,10 @@ extension Int32 {
         return  bigEndianBytes
     }
     
+    
+    /// 将Int32格式的Minecraft Query协议SessionID转换成大端存储格式的字节数组，
+    /// 因为Minecraft不处理字节的高4位, 所以使用0x0F屏蔽高4位
+    // 从而获取合法的sessionID字节数组
     public var sessionIDBytes: [UInt8] {
         var bigEndianBytes = [UInt8]()
         for i in (0 ..< 4).reversed() {
