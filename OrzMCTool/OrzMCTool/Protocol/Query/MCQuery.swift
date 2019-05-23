@@ -71,8 +71,8 @@ class MCQuery {
         switch self.client.send(data: basicStatusRequest.packet()) {
         case .success:
             let (bytes, _, _) = self.client.recv(MCQuery.BUFF_SIZE)
-            if let data = bytes, let response = Response(data) {
-                print("basic status: \(response.parseBasicStatus())")
+            if let data = bytes, let basicStatus = Response(data)?.parseBasicStatus() {
+                print("basic status: \(basicStatus)")
             } else {
                 print("handshake failed!")
             }
@@ -96,8 +96,8 @@ class MCQuery {
         switch self.client.send(data: fullStatusRequest.packet()) {
         case .success:
             let (bytes, _, _) = self.client.recv(MCQuery.BUFF_SIZE)
-            if let data = bytes, let response = Response(data) {
-                print("full status: \(response.parseFullStatus())")
+            if let data = bytes, let fullStatus = Response(data)?.parseFullStatus() {
+                print("full status: \(fullStatus)")
             } else {
                 print("handshake failed!")
             }
@@ -172,7 +172,7 @@ extension MCQuery {
         /// 从响应数据中提取服务器基础信息字符串
         ///
         /// - Returns: 服务器基础信息字符串数组
-        func parseBasicStatus() -> [String] {
+        func parseBasicStatus() -> MCServerBasicStatus? {
             var statusInfo = [String]()
             if(self.type == .status) {
                 var lastIndex = 0
@@ -192,15 +192,82 @@ extension MCQuery {
                     }
                 }
             }
-            return statusInfo
+            guard statusInfo.count == 7 else {
+                return nil;
+            }
+            
+            return MCServerBasicStatus(
+                MOTD: statusInfo[0],
+                gameType: statusInfo[1],
+                map: statusInfo[2],
+                numplayers: statusInfo[3],
+                maxplayers: statusInfo[4],
+                hostport: Int16((statusInfo[5] as NSString).intValue),
+                hostip: statusInfo[6]
+            )
         }
         
         
         /// 从响应数据中提取服务器详细信息
-        func parseFullStatus () {
+        func parseFullStatus () -> MCServerFullStatus?{
+            let paddingCount = 11
             if(self.type == .status) {
+                var keyValueInfo = [String]()
+                var lastIndex = 0
+                let invalidPayload = [Byte](payload[paddingCount..<payload.count])
+                for (index, byte) in invalidPayload.enumerated() {
+                    
+                    if(byte == 0x00) {
+                        if let value = String(bytes: [Byte](invalidPayload[lastIndex...index]), encoding: .ascii) {
+                            keyValueInfo.append(value)
+                        }
+                        lastIndex = index + 1
+                        if(invalidPayload[lastIndex] == 0x00) {
+                            lastIndex += paddingCount
+                            break
+                        }
+                    }
+                }
+
+                var playersInfo = [String]()
+                let playerSection = [Byte](invalidPayload[lastIndex..<invalidPayload.count])
+                lastIndex = 0
+                for (index, byte) in playerSection.enumerated() {
+                    
+                    if(byte == 0x00) {
+                        if let value = String(bytes: [Byte](playerSection[lastIndex...index]), encoding: .ascii) {
+                            playersInfo.append(value)
+                        }
+                        lastIndex = index + 1
+                        if(playerSection[lastIndex] == 0x00) {
+                            break
+                        }
+                    }
+                }
                 
+                var infoDict = [String: String]()
+                for (index, value) in keyValueInfo.enumerated() {
+                    if(index % 2 == 0) {
+                        infoDict[value] = keyValueInfo[index + 1]
+                    } else {
+                        continue
+                    }
+                }
+                return MCServerFullStatus(
+                    hostname: infoDict["hostname\0"] ?? "",
+                    gameType: infoDict["gametype\0"] ?? "",
+                    gameId: infoDict["game_id\0"] ?? "",
+                    version: infoDict["version\0"] ?? "",
+                    plugins: infoDict["plugins\0"] ?? "",
+                    map: infoDict["map\0"] ?? "",
+                    numplayers: infoDict["numplayers\0"] ?? "",
+                    maxPlayers: infoDict["maxplayers\0"] ?? "",
+                    hostPort: infoDict["hostport\0"] ?? "",
+                    hostIP: infoDict["hostip\0"] ?? "",
+                    players: playersInfo
+                )
             }
+            return nil
         }
     }
 }
