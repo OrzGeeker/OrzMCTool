@@ -16,8 +16,8 @@ class ViewController: UIViewController {
         
         let query = MCQuery(host: "jokerhub.cn")
         query.handshake()
+        query.basicStatus()
+        query.fullStatus()
     }
-
-
 }
 
