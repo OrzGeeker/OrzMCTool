@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct MCServerBasicStatus {
+
+/// Minecraft服务器基本信息数据
+public struct MCServerBasicStatus {
     let MOTD: String
     let gameType: String
     let map: String
@@ -18,8 +20,8 @@ struct MCServerBasicStatus {
     let hostip: String
 }
 
-
-struct MCServerFullStatus {
+/// Minecraft服务器详细信息数据
+public struct MCServerFullStatus {
     let hostname: String
     let gameType: String
     let gameId: String
