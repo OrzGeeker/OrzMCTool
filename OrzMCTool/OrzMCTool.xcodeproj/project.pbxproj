@@ -21,6 +21,7 @@
 		F3334771229439CD00C5C81C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F333476F229439CD00C5C81C /* LaunchScreen.storyboard */; };
 		F333477C229439CD00C5C81C /* OrzMCToolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333477B229439CD00C5C81C /* OrzMCToolTests.swift */; };
 		F333478A2295889500C5C81C /* MCQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33347892295889500C5C81C /* MCQuery.swift */; };
+		F37E9E4D22982DE500AE2FF7 /* String+MOTD.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E9E4C22982DE500AE2FF7 /* String+MOTD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		F333477B229439CD00C5C81C /* OrzMCToolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCToolTests.swift; sourceTree = "<group>"; };
 		F333477D229439CD00C5C81C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33347892295889500C5C81C /* MCQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCQuery.swift; sourceTree = "<group>"; };
+		F37E9E4C22982DE500AE2FF7 /* String+MOTD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MOTD.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 			children = (
 				F33347892295889500C5C81C /* MCQuery.swift */,
 				0EF6C1E2229666F5007661F2 /* Int32+BigEndianBytes.swift */,
+				F37E9E4C22982DE500AE2FF7 /* String+MOTD.swift */,
 				0EF6C1E42296B721007661F2 /* MCServerStatus.swift */,
 				0EF6C1E62297DD36007661F2 /* MCQuery+Packet.swift */,
 			);
@@ -350,6 +353,7 @@
 				0EF6C1E3229666F5007661F2 /* Int32+BigEndianBytes.swift in Sources */,
 				0EF6C1E92297F1B5007661F2 /* MCServerStatusCell.swift in Sources */,
 				0EF6C1E72297DD36007661F2 /* MCQuery+Packet.swift in Sources */,
+				F37E9E4D22982DE500AE2FF7 /* String+MOTD.swift in Sources */,
 				F333478A2295889500C5C81C /* MCQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

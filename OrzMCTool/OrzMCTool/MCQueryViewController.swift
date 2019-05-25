@@ -56,18 +56,23 @@ class MCQueryViewController: UIViewController {
     }
     
     func checkServer(_ host: String, port: Int32 = MCQuery.defautlQueryPort) {
-        let query = MCQuery(host: host, port: port)
-        query.handshake()
-        if let fullStatus = query.fullStatus() {
-            let serverInfo = MCServerInfo(host: host, port: port, statusInfo: fullStatus)
-            if let index = self.servers.firstIndex(of: serverInfo) {
-                self.servers[index] = serverInfo
-            } else {
-                self.servers.append(serverInfo)
+        DispatchQueue.global().async {
+            let query = MCQuery(host: host, port: port)
+            query.handshake()
+            if let fullStatus = query.fullStatus() {
+                let serverInfo = MCServerInfo(host: host, port: port, statusInfo: fullStatus)
+                if let index = self.servers.firstIndex(of: serverInfo) {
+                    self.servers[index] = serverInfo
+                } else {
+                    self.servers.append(serverInfo)
+                }
+                DispatchQueue.main.async {
+                    print(fullStatus)
+                    self.serverListTableView.reloadData()
+                }
             }
-            print(fullStatus)
-            self.serverListTableView.reloadData()
         }
+
     }
 }
 
@@ -77,7 +82,7 @@ extension MCQueryViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: MCServerStatusCell.cellId, for: indexPath) as! MCServerStatusCell
         let server = self.servers[indexPath.row]
         let status = server.statusInfo
-        cell.MOTD.text = status.hostname
+        cell.MOTD.attributedText = status.hostname.MODT
         cell.plugins.text = status.plugins
         cell.type.text = status.gameType
         cell.version.text = status.version
