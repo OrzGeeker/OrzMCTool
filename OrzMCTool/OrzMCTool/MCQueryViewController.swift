@@ -70,6 +70,11 @@ class MCQueryViewController: UIViewController {
                     print(fullStatus)
                     self.serverListTableView.reloadData()
                 }
+            }  else {
+                let alert = UIAlertController(title: "获取服务器状态失败", message: "请确认网络是否正常连接！", preferredStyle: .alert)
+                let action = UIAlertAction(title: "确认", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
             }
         }
 
