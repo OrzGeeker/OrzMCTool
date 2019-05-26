@@ -45,10 +45,10 @@ open class MCQuery {
         switch self.client.send(data: handshakeRequest.packet()) {
         case .success:
             let (bytes, _, _) = self.client.recv(MCQuery.BUFF_SIZE)
-            if let data = bytes, let response = Response(data) {
-                let tokenString = String(cString: response.payload) as NSString
+            if let data = bytes,let response = Response(data), let tokenLatin1String = response.payload.queryString()  {
+                let tokenString = tokenLatin1String as NSString
+                print("handshake successfully!(token: \(tokenLatin1String))")
                 self.token = tokenString.intValue
-                print("handshake successfully!(token: \(tokenString.intValue))")
             } else {
                 print("handshake failed!")
             }

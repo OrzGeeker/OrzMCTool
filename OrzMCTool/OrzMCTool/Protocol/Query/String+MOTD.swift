@@ -10,15 +10,19 @@ import Foundation
 
 extension String {
     public var MODT: NSAttributedString? {
+        var motd = ""
         let sectionChar: Character = "\u{00A7}"
-        print(sectionChar)
-        print(self[self.startIndex].unicodeScalars)
-        for index in self.indices {
-            if self[index] == sectionChar {
-                
+        for index in 0 ..< self.count {
+            let curIndex = self.index(self.startIndex, offsetBy: index)
+            let char = self[curIndex]
+            if char == sectionChar {
+                continue
             }
+            if (curIndex > self.startIndex && self[self.index(curIndex, offsetBy: -1)] == sectionChar) {
+                continue
+            }
+            motd.append(char)
         }
-        
-        return NSAttributedString(string: self)
+        return NSAttributedString(string: motd)
     }
 }

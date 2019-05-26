@@ -22,6 +22,7 @@
 		F333477C229439CD00C5C81C /* OrzMCToolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F333477B229439CD00C5C81C /* OrzMCToolTests.swift */; };
 		F333478A2295889500C5C81C /* MCQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33347892295889500C5C81C /* MCQuery.swift */; };
 		F37E9E4D22982DE500AE2FF7 /* String+MOTD.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E9E4C22982DE500AE2FF7 /* String+MOTD.swift */; };
+		F37E9E50229A9F8F00AE2FF7 /* Array+UInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37E9E4F229A9F8F00AE2FF7 /* Array+UInt8.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		F333477D229439CD00C5C81C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F33347892295889500C5C81C /* MCQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCQuery.swift; sourceTree = "<group>"; };
 		F37E9E4C22982DE500AE2FF7 /* String+MOTD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+MOTD.swift"; sourceTree = "<group>"; };
+		F37E9E4F229A9F8F00AE2FF7 /* Array+UInt8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+UInt8.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 				F37E9E4C22982DE500AE2FF7 /* String+MOTD.swift */,
 				0EF6C1E42296B721007661F2 /* MCServerStatus.swift */,
 				0EF6C1E62297DD36007661F2 /* MCQuery+Packet.swift */,
+				F37E9E4F229A9F8F00AE2FF7 /* Array+UInt8.swift */,
 			);
 			path = Query;
 			sourceTree = "<group>";
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F37E9E50229A9F8F00AE2FF7 /* Array+UInt8.swift in Sources */,
 				0EF6C1EB22980A8B007661F2 /* MCServerInfo.swift in Sources */,
 				F3334769229439CB00C5C81C /* MCQueryViewController.swift in Sources */,
 				F3334767229439CB00C5C81C /* AppDelegate.swift in Sources */,

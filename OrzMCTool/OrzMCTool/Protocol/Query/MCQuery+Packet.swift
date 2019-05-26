@@ -86,9 +86,11 @@ extension MCQuery {
                     }
                     
                     if(byte == 0x00) {
-                        let value = String(cString: [Byte](payload[lastIndex...index]))
-                        statusInfo.append(value)
+                        if let value = [Byte](payload[lastIndex...index]).queryString() {
+                            statusInfo.append(value)
+                        }
                         lastIndex = index + 1
+                            
                     }
                 }
             }
@@ -118,8 +120,9 @@ extension MCQuery {
                 for (index, byte) in invalidPayload.enumerated() {
                     
                     if(byte == 0x00) {
-                        let value = String(cString: [Byte](invalidPayload[lastIndex...index]))
-                        keyValueInfo.append(value)
+                        if let value = [Byte](invalidPayload[lastIndex...index]).queryString() {
+                            keyValueInfo.append(value)
+                        }
                         lastIndex = index + 1
                         if(invalidPayload[lastIndex] == 0x00) {
                             lastIndex += paddingCount
@@ -134,8 +137,9 @@ extension MCQuery {
                 for (index, byte) in playerSection.enumerated() {
                     
                     if(byte == 0x00) {
-                        let player = String(cString: [Byte](playerSection[lastIndex...index]))
-                        playersInfo.append(player)
+                        if let player = [Byte](playerSection[lastIndex...index]).queryString() {
+                            playersInfo.append(player)
+                        }
                         lastIndex = index + 1
                         if(lastIndex >= playerSection.count || playerSection[lastIndex] == 0x00) {
                             break
@@ -151,6 +155,7 @@ extension MCQuery {
                         continue
                     }
                 }
+
                 return MCServerFullStatus(
                     hostname: infoDict["hostname"] ?? "",
                     gameType: infoDict["gametype"] ?? "",
