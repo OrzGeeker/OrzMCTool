@@ -17,8 +17,7 @@ class MCQueryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        
+        serverListTableView.estimatedRowHeight = 200
     }
     
     @IBAction func addServer(_ sender: UIBarButtonItem) {
@@ -111,9 +110,5 @@ extension MCQueryViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let server = self.servers[indexPath.row]
         self.checkServer(server.host, port: server.port)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
     }
 }
