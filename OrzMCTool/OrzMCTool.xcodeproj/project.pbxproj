@@ -163,7 +163,7 @@
 		F333478622943B6200C5C81C /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				F333478822943B7300C5C81C /* Cron */,
+				F333478822943B7300C5C81C /* RCON */,
 				F333478722943B6C00C5C81C /* Query */,
 				F365A4D222AE42F600812D5D /* ServerListPing */,
 			);
@@ -183,11 +183,11 @@
 			path = Query;
 			sourceTree = "<group>";
 		};
-		F333478822943B7300C5C81C /* Cron */ = {
+		F333478822943B7300C5C81C /* RCON */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Cron;
+			path = RCON;
 			sourceTree = "<group>";
 		};
 		F365A4D222AE42F600812D5D /* ServerListPing */ = {
