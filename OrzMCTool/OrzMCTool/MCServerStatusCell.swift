@@ -14,6 +14,7 @@ class MCServerStatusCell: UITableViewCell {
     
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var MOTD: UILabel!
+    @IBOutlet weak var ping: UILabel!
     @IBOutlet weak var type: UILabel!
     @IBOutlet weak var map: UILabel!
     @IBOutlet weak var playerInfo: UILabel!

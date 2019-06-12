@@ -149,7 +149,7 @@ extension MCQuery {
                 
                 var infoDict = [String: String]()
                 for (index, value) in keyValueInfo.enumerated() {
-                    if(index % 2 == 0) {
+                    if(index % 2 == 0 && index + 1 < keyValueInfo.count) {
                         infoDict[value] = keyValueInfo[index + 1]
                     } else {
                         continue

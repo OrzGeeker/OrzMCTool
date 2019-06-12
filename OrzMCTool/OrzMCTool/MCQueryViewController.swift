@@ -31,7 +31,7 @@ class MCQueryViewController: UIViewController {
         }
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "输入端口号，默认为：\(MCQuery.defautlQueryPort)"
+            textField.placeholder = "输入端口号，默认为：\(MCQuery.defaultQueryPort)"
             textField.keyboardType = .numberPad
             textField.keyboardAppearance = .dark
         }
@@ -54,14 +54,56 @@ class MCQueryViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
-    func checkServer(_ host: String, port: Int32 = MCQuery.defautlQueryPort) {
+    func checkServer(_ host: String, port: Int32 = MCQuery.defaultQueryPort) {
+        checkWithSLP(host, port: port)
+        checkWithQuery(host, port: port)
+    }
+    
+    func  checkWithSLP(_ host: String, port: Int32) {
+        DispatchQueue.global().async {
+            let slp = MCSLP(host: host, port: port)
+            do {
+                try slp.handshake()
+            } catch let e {
+                self.processException(e)
+            }
+            
+            do {
+                let (status, ping) = try slp.status()
+                if  let jsonData = status?.data(using: .utf8) {
+                    let jsonDecoder = JSONDecoder()
+                    let status = try jsonDecoder.decode(MCSLPStatus.self, from: jsonData)
+                    
+                    var serverInfo = MCServerInfo(host: host, port: port)
+                    serverInfo.statusInfo.slpServerStatus = status
+                    serverInfo.statusInfo.ping = ping
+                    if let index = self.servers.firstIndex(of: serverInfo) {
+                        self.servers[index].statusInfo.slpServerStatus = status
+                        self.servers[index].statusInfo.ping = ping
+                    } else {
+                        self.servers.append(serverInfo)
+                    }
+                    DispatchQueue.main.async {
+                        print(status)
+                        print("\(ping) ms")
+                        self.serverListTableView.reloadData()
+                    }
+                }
+            } catch let e {
+                self.processException(e)
+            }
+        }
+    }
+    
+    func checkWithQuery(_ host: String, port: Int32) {
         DispatchQueue.global().async {
             let query = MCQuery(host: host, port: port)
             query.handshake()
             if let fullStatus = query.fullStatus() {
-                let serverInfo = MCServerInfo(host: host, port: port, statusInfo: fullStatus)
+                var serverInfo = MCServerInfo(host: host, port: port)
+                serverInfo.statusInfo.queryServerFullStatus = fullStatus
                 if let index = self.servers.firstIndex(of: serverInfo) {
-                    self.servers[index] = serverInfo
+                    self.servers[index].statusInfo.queryServerFullStatus = fullStatus
                 } else {
                     self.servers.append(serverInfo)
                 }
@@ -76,7 +118,10 @@ class MCQueryViewController: UIViewController {
                 self.present(alert, animated: true, completion: nil)
             }
         }
-
+    }
+    
+    func processException(_ e: Error) {
+        print(e.localizedDescription)
     }
 }
 
@@ -85,15 +130,36 @@ extension MCQueryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MCServerStatusCell.cellId, for: indexPath) as! MCServerStatusCell
         let server = self.servers[indexPath.row]
-        let status = server.statusInfo
-        cell.MOTD.attributedText = status.hostname.MODT
-        cell.plugins.text = status.plugins
-        cell.type.text = status.gameType
-        cell.version.text = status.version
-        cell.map.text = status.map
-        cell.hostport.text = "\(server.host)(\(status.hostIP)):\(status.hostPort)"
-        cell.playerInfo.text = "\(status.numplayers)/\(status.maxPlayers)"
-        cell.players.text = status.players.joined(separator: ",")
+        
+        if let status = server.statusInfo.slpServerStatus,
+            let imageData = status.favicon.base64EncodedImageData,
+            let icon = UIImage(data: imageData) {
+            cell.icon?.image = icon
+            cell.MOTD.attributedText = status.description.text.MODT
+            cell.playerInfo.text = "\(status.players.online)/\(status.players.max)"
+        }
+        
+        if let ping = server.statusInfo.ping {
+            cell.ping.text = "\(ping) ms"
+            if ping <= 100 {
+                cell.ping.textColor = .green
+            } else if ping <= 100 {
+                cell.ping.textColor = .yellow
+            } else {
+                cell.ping.textColor = .red
+            }
+        }
+        
+        if let status = server.statusInfo.queryServerFullStatus {
+            cell.MOTD.attributedText = status.hostname.MODT
+            cell.plugins.text = status.plugins
+            cell.type.text = status.gameType
+            cell.version.text = status.version
+            cell.map.text = status.map
+            cell.hostport.text = "\(server.host)(\(status.hostIP)):\(status.hostPort)"
+            cell.playerInfo.text = "\(status.numplayers)/\(status.maxPlayers)"
+            cell.players.text = status.players.joined(separator: ",")
+        }
         
         return cell
     }
@@ -110,5 +176,15 @@ extension MCQueryViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let server = self.servers[indexPath.row]
         self.checkServer(server.host, port: server.port)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            self.servers.remove(at: indexPath.row)
+            tableView.reloadData()
+        default:
+            break
+        }
     }
 }

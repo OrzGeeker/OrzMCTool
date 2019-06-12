@@ -39,7 +39,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOTD" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6a-NL-ibX">
-                                                    <rect key="frame" x="78" y="11" width="316" height="50"/>
+                                                    <rect key="frame" x="78" y="11" width="283.5" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -99,6 +99,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="ping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6X-uQ-LV2">
+                                                    <rect key="frame" x="366.5" y="11" width="33.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cTK-GP-e0d" firstAttribute="top" secondItem="1CF-G0-0WT" secondAttribute="bottom" constant="8" id="4RV-gk-5W6"/>
@@ -108,6 +114,7 @@
                                                 <constraint firstItem="v6a-NL-ibX" firstAttribute="top" secondItem="1CF-G0-0WT" secondAttribute="top" id="F1U-nE-0ZB"/>
                                                 <constraint firstAttribute="trailing" secondItem="PJW-L7-Esp" secondAttribute="trailing" constant="20" id="Frx-H8-OId"/>
                                                 <constraint firstItem="v6a-NL-ibX" firstAttribute="height" secondItem="1CF-G0-0WT" secondAttribute="height" id="IaT-ZN-kbL"/>
+                                                <constraint firstItem="Q6X-uQ-LV2" firstAttribute="top" secondItem="v6a-NL-ibX" secondAttribute="top" id="Kl0-3p-ut7"/>
                                                 <constraint firstItem="5Eg-gi-kuc" firstAttribute="leading" secondItem="cTK-GP-e0d" secondAttribute="trailing" constant="50" id="Lyh-Cn-yC1"/>
                                                 <constraint firstAttribute="trailing" secondItem="i4B-QV-xHr" secondAttribute="trailing" constant="20" symbolic="YES" id="UQi-1s-nq9"/>
                                                 <constraint firstItem="ypK-Dg-wiD" firstAttribute="top" secondItem="cTK-GP-e0d" secondAttribute="top" id="VE0-o2-M1h"/>
@@ -115,6 +122,7 @@
                                                 <constraint firstItem="i4B-QV-xHr" firstAttribute="leading" secondItem="rNd-De-QSI" secondAttribute="leading" id="aBo-vF-VfP"/>
                                                 <constraint firstItem="1CF-G0-0WT" firstAttribute="top" secondItem="lsC-pw-Po3" secondAttribute="top" constant="11" id="awM-KR-E67"/>
                                                 <constraint firstItem="1CF-G0-0WT" firstAttribute="leading" secondItem="lsC-pw-Po3" secondAttribute="leading" constant="20" id="axU-p5-iVJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="Q6X-uQ-LV2" secondAttribute="trailing" constant="14" id="dpx-YQ-z3f"/>
                                                 <constraint firstItem="i4B-QV-xHr" firstAttribute="top" secondItem="rNd-De-QSI" secondAttribute="bottom" constant="8" id="fQh-Zm-qx7"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="i4B-QV-xHr" secondAttribute="bottom" constant="20" symbolic="YES" id="fmx-Cq-ZEc"/>
                                                 <constraint firstItem="v6a-NL-ibX" firstAttribute="leading" secondItem="1CF-G0-0WT" secondAttribute="trailing" constant="8" id="frh-aZ-mIB"/>
@@ -122,8 +130,8 @@
                                                 <constraint firstItem="ypK-Dg-wiD" firstAttribute="leading" secondItem="5Eg-gi-kuc" secondAttribute="trailing" constant="50" id="kg9-Qf-KnP"/>
                                                 <constraint firstItem="OfL-fG-rdi" firstAttribute="leading" secondItem="cTK-GP-e0d" secondAttribute="leading" id="ngq-Jm-syk"/>
                                                 <constraint firstItem="cTK-GP-e0d" firstAttribute="leading" secondItem="1CF-G0-0WT" secondAttribute="leading" id="osw-cJ-zBn"/>
+                                                <constraint firstItem="Q6X-uQ-LV2" firstAttribute="leading" secondItem="v6a-NL-ibX" secondAttribute="trailing" constant="5" id="qle-PJ-DIa"/>
                                                 <constraint firstItem="rNd-De-QSI" firstAttribute="top" secondItem="OfL-fG-rdi" secondAttribute="bottom" constant="8" id="roM-g7-2gt"/>
-                                                <constraint firstAttribute="trailing" secondItem="v6a-NL-ibX" secondAttribute="trailing" constant="20" symbolic="YES" id="vjH-2t-MDB"/>
                                                 <constraint firstItem="PJW-L7-Esp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ypK-Dg-wiD" secondAttribute="trailing" constant="20" id="xHe-En-mxs"/>
                                                 <constraint firstAttribute="trailing" secondItem="OfL-fG-rdi" secondAttribute="trailing" constant="20" symbolic="YES" id="xwU-CK-MNj"/>
                                             </constraints>
@@ -133,6 +141,7 @@
                                             <outlet property="hostport" destination="OfL-fG-rdi" id="mak-VC-WeP"/>
                                             <outlet property="icon" destination="1CF-G0-0WT" id="Jp1-Dd-tNU"/>
                                             <outlet property="map" destination="ypK-Dg-wiD" id="2rA-bA-wQX"/>
+                                            <outlet property="ping" destination="Q6X-uQ-LV2" id="Tpn-Ja-dd7"/>
                                             <outlet property="playerInfo" destination="PJW-L7-Esp" id="yef-wC-zId"/>
                                             <outlet property="players" destination="i4B-QV-xHr" id="yeF-rq-kMO"/>
                                             <outlet property="plugins" destination="rNd-De-QSI" id="opX-y0-nWU"/>

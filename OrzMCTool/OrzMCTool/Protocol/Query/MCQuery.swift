@@ -14,7 +14,7 @@ import SwiftSocket
 
 open class MCQuery {
     
-    static let defautlQueryPort: Int32 = 25565
+    static let defaultQueryPort: Int32 = 25565
     
     // 主机地址/域名
     var host: String
@@ -32,7 +32,7 @@ open class MCQuery {
     /// - Parameters:
     ///   - host: 查询的MC服务器主机，可以是域名或者ip地址
     ///   - port: 端口号
-    init(host: String, port: Int32 = MCQuery.defautlQueryPort) {
+    init(host: String, port: Int32 = MCQuery.defaultQueryPort) {
         self.host = host
         self.port = port
         self.client = UDPClient(address: self.host, port: self.port)
