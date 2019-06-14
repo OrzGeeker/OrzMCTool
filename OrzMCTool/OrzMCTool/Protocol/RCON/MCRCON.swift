@@ -17,6 +17,7 @@ import SwiftSocket
 open class MCRCON {
     
     static let defaultRCONPort: Int32 = 25575
+    static let BUFF_SIZE_1K = 1024
     
     // 主机地址/域名
     var host: String
@@ -34,15 +35,55 @@ open class MCRCON {
         self.requestID = 0
     }
     
-    func login() {
-        
+    func loginAndSendCmd(password: String, cmd: String) throws -> String? {
+        switch self.client.connect(timeout: 5) {
+        case .success:
+            let loginPacket = RCONPacket(id: self.requestID, type: .auth, body: password)
+            switch self.client.send(data: loginPacket.data) {
+            case .success:
+                guard let data = self.client.read(MCRCON.BUFF_SIZE_1K, timeout: 5) else {
+                    throw MCRCONError.authTimeout
+                }
+                if let response = RCONPacket(bytes: data) {
+                    guard response.id == loginPacket.id, response.type == .command else {
+                        throw MCRCONError.authFailed
+                    }
+                    let result = try self.sendCmd(cmd)
+                    return result
+                } else {
+                    throw MCRCONError.packetMalFormat
+                }
+            case .failure(let error):
+                 throw MCRCONError.sendCmdFailed(error)
+            }
+        case .failure(let error):
+            throw MCRCONError.connectFailed(error)
+        }
+    }
+
+    func sendCmd(_ cmd: String) throws -> String? {
+        print("Send Command: \(cmd)")
+        let commandPacket = RCONPacket(id: self.requestID, type: .command, body: cmd)
+        switch self.client.send(data: commandPacket.data) {
+        case .success:
+            guard let data = self.client.read(MCRCON.BUFF_SIZE_1K, timeout: 5) else {
+                throw MCRCONError.sendCmdTimeout
+            }
+            if let response = RCONPacket(bytes: data) {
+                guard commandPacket.id == response.id, response.type == .response else {
+                    throw MCRCONError.responseInvalid
+                }
+                let result = response.body
+                return result
+            } else {
+                throw MCRCONError.packetMalFormat
+            }
+        case .failure(let error):
+            throw MCRCONError.sendCmdFailed(error)
+        }
     }
     
-    func logout() {
-        
-    }
-    
-    func sendCmd() {
-        
+    deinit {
+        self.client.close()
     }
 }

@@ -14,6 +14,7 @@
 		0EF6C1EB22980A8B007661F2 /* MCServerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6C1EA22980A8B007661F2 /* MCServerInfo.swift */; };
 		344E7903DB836997BB639CC2 /* Pods_OrzMCTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5481E39E0BB485051DB58028 /* Pods_OrzMCTool.framework */; };
 		BC4340FFEBDFA5C2C9F06502 /* Pods_OrzMCToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CFFDA5BBFC18708A7BDAB64 /* Pods_OrzMCToolTests.framework */; };
+		F320DA9022B3D76500645FF1 /* MCRCONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F320DA8F22B3D76500645FF1 /* MCRCONError.swift */; };
 		F3334767229439CB00C5C81C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3334766229439CB00C5C81C /* AppDelegate.swift */; };
 		F3334769229439CB00C5C81C /* MCServerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3334768229439CB00C5C81C /* MCServerListViewController.swift */; };
 		F333476C229439CB00C5C81C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F333476A229439CB00C5C81C /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		87177055EBB07ED06821F521 /* Pods-OrzMCToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzMCToolTests.release.xcconfig"; path = "Target Support Files/Pods-OrzMCToolTests/Pods-OrzMCToolTests.release.xcconfig"; sourceTree = "<group>"; };
 		BCF40EA8C592903B9FF045BC /* Pods-OrzMCToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzMCToolTests.debug.xcconfig"; path = "Target Support Files/Pods-OrzMCToolTests/Pods-OrzMCToolTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DDADC1764BB3C93A36FA43B0 /* Pods-OrzMCTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzMCTool.debug.xcconfig"; path = "Target Support Files/Pods-OrzMCTool/Pods-OrzMCTool.debug.xcconfig"; sourceTree = "<group>"; };
+		F320DA8F22B3D76500645FF1 /* MCRCONError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCRCONError.swift; sourceTree = "<group>"; };
 		F3334763229439CB00C5C81C /* OrzMCTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrzMCTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3334766229439CB00C5C81C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3334768229439CB00C5C81C /* MCServerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCServerListViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				F3A2029F22B15004009A656E /* MCRCON.swift */,
+				F320DA8F22B3D76500645FF1 /* MCRCONError.swift */,
 				F3A202A122B152F1009A656E /* RCONPacket.swift */,
 				F3A202A322B15551009A656E /* Int32+littleEndianBytes.swift */,
 			);
@@ -400,6 +403,7 @@
 				F3A202A422B15551009A656E /* Int32+littleEndianBytes.swift in Sources */,
 				F3A202A222B152F1009A656E /* RCONPacket.swift in Sources */,
 				F3A2029B22B13553009A656E /* String+base64Image.swift in Sources */,
+				F320DA9022B3D76500645FF1 /* MCRCONError.swift in Sources */,
 				0EF6C1E72297DD36007661F2 /* MCQuery+Packet.swift in Sources */,
 				F37E9E4D22982DE500AE2FF7 /* String+MOTD.swift in Sources */,
 				F333478A2295889500C5C81C /* MCQuery.swift in Sources */,

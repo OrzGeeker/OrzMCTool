@@ -31,20 +31,48 @@ class MCServerListViewController: UIViewController {
         }
         
         alertVC.addTextField { (textField) in
-            textField.placeholder = "输入端口号，默认为：\(MCQuery.defaultQueryPort)"
+            textField.placeholder = "服务端口号，默认为：\(MCSLP.defaultPort)"
+            textField.keyboardType = .numberPad
+            textField.keyboardAppearance = .dark
+        }
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "Query端口号，默认为：\(MCQuery.defaultQueryPort)"
+            textField.keyboardType = .numberPad
+            textField.keyboardAppearance = .dark
+        }
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "RCON端口号，默认为：\(MCRCON.defaultRCONPort)"
             textField.keyboardType = .numberPad
             textField.keyboardAppearance = .dark
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         let fetchAction = UIAlertAction(title: "查询", style: .default) { (action) in
-            if let textFields = alertVC.textFields, textFields.count == 2,
+            if  let textFields = alertVC.textFields, textFields.count == 4,
                 let host = textFields[0].text {
-                if let portStr = textFields[1].text, let port = Int32(portStr) {
-                    self.checkServer(host, port: port)
-                } else {
-                    self.checkServer(host)
+                
+                var port = MCSLP.defaultPort
+                var queryPort = MCQuery.defaultQueryPort
+                var rconPort = MCRCON.defaultRCONPort
+                
+                if  let inputPortStr = textFields[1].text,
+                    let inputPort = Int32(inputPortStr) {
+                    port = inputPort
                 }
+                
+                if  let inputQueryPortStr = textFields[2].text,
+                    let inputQueryPort = Int32(inputQueryPortStr) {
+                    queryPort = inputQueryPort
+                }
+                
+                if  let inputRCONPortStr = textFields[3].text,
+                    let inputRCONPort = Int32(inputRCONPortStr) {
+                    rconPort = inputRCONPort
+                }
+            
+                self.checkServer(host, port: port, queryPort: queryPort, rconPort: rconPort)
             }
         }
         
@@ -56,18 +84,19 @@ class MCServerListViewController: UIViewController {
     
     @IBAction func sendCmdLongGesture(_ sender: UILongPressGestureRecognizer) {
         if  sender.state == .began,
-            let tableView = self.serverListTableView, sender.view is UITableViewCell,
-            let indexPath = tableView.indexPath(for: sender.view as! UITableViewCell) {
-            let server = self.servers[indexPath.row]
-            self.sendRCONCmd(server.host, port: server.port)
+            let tableView = self.serverListTableView, let cell = sender.view as? MCServerStatusCell,
+            let indexPath = tableView.indexPath(for: cell) {
+            var server = self.servers[indexPath.row]
+            server.rconCmdResult = nil
+            self.sendRCONCmd(server.host, port: server.port, queryPort: server.queryPort, rconPort: server.rconPort, indexPath: indexPath)
         }
     }
     
-    func sendRCONCmd(_ host: String, port: Int32 = MCRCON.defaultRCONPort) {
+    func sendRCONCmd(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32, indexPath: IndexPath) {
         
         print("Send RCON Cmd!")
         
-        let alertVC = UIAlertController(title: "\(host):\(port)", message: nil, preferredStyle: .alert)
+        let alertVC = UIAlertController(title: "\(host):\(rconPort)", message: nil, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
             textField.placeholder = "输入RCON密码"
@@ -89,8 +118,19 @@ class MCServerListViewController: UIViewController {
             if  let textFields = alertVC.textFields, textFields.count == 2,
                 let password = textFields[0].text,
                 let cmdStr = textFields[1].text {
-                print(password)
-                print(cmdStr)
+                DispatchQueue.global().async {
+                    do {
+                        let result = try MCRCON(host: host, port: rconPort).loginAndSendCmd(password: password, cmd: cmdStr)
+                        var server = self.servers[indexPath.row]
+                        server.rconCmdResult = "$ \(cmdStr)\n\(result ?? "")"
+                        self.servers[indexPath.row] = server
+                        DispatchQueue.main.async {
+                            self.serverListTableView.reloadData()
+                        }
+                    } catch let e {
+                        self.processException(e)
+                    }
+                }
             }
         }
         
@@ -100,12 +140,12 @@ class MCServerListViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
-    func checkServer(_ host: String, port: Int32 = MCQuery.defaultQueryPort) {
-        checkWithSLP(host, port: port)
-        checkWithQuery(host, port: port)
+    func checkServer(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
+        checkWithSLP(host, port: port, queryPort: queryPort, rconPort: rconPort)
+        checkWithQuery(host, port: port, queryPort: queryPort, rconPort: rconPort)
     }
     
-    func  checkWithSLP(_ host: String, port: Int32) {
+    func  checkWithSLP(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
         DispatchQueue.global().async {
             let slp = MCSLP(host: host, port: port)
             do {
@@ -120,7 +160,7 @@ class MCServerListViewController: UIViewController {
                     let jsonDecoder = JSONDecoder()
                     let status = try jsonDecoder.decode(MCSLPStatus.self, from: jsonData)
                     
-                    var serverInfo = MCServerInfo(host: host, port: port)
+                    var serverInfo = MCServerInfo(host: host, port: port, queryPort: queryPort, rconPort: rconPort)
                     serverInfo.statusInfo.slpServerStatus = status
                     serverInfo.statusInfo.ping = ping
                     if let index = self.servers.firstIndex(of: serverInfo) {
@@ -141,12 +181,12 @@ class MCServerListViewController: UIViewController {
         }
     }
     
-    func checkWithQuery(_ host: String, port: Int32) {
+    func checkWithQuery(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
         DispatchQueue.global().async {
             let query = MCQuery(host: host, port: port)
             query.handshake()
             if let fullStatus = query.fullStatus() {
-                var serverInfo = MCServerInfo(host: host, port: port)
+                var serverInfo = MCServerInfo(host: host, port: port, queryPort: queryPort, rconPort: rconPort)
                 serverInfo.statusInfo.queryServerFullStatus = fullStatus
                 if let index = self.servers.firstIndex(of: serverInfo) {
                     self.servers[index].statusInfo.queryServerFullStatus = fullStatus
@@ -167,7 +207,7 @@ class MCServerListViewController: UIViewController {
     }
     
     func processException(_ e: Error) {
-        print(e.localizedDescription)
+        print(e)
     }
 }
 
@@ -178,6 +218,7 @@ extension MCServerListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MCServerStatusCell.cellId, for: indexPath) as! MCServerStatusCell
         let server = self.servers[indexPath.row]
+        cell.result.text = server.rconCmdResult?.MODT?.string
         
         if let status = server.statusInfo.slpServerStatus,
             let imageData = status.favicon.base64EncodedImageData,
@@ -224,7 +265,7 @@ extension MCServerListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let server = self.servers[indexPath.row]
-        self.checkServer(server.host, port: server.port)
+        self.checkServer(server.host, port: server.port, queryPort: server.queryPort, rconPort: server.rconPort)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

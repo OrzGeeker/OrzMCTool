@@ -22,5 +22,6 @@ class MCServerStatusCell: UITableViewCell {
     @IBOutlet weak var version: UILabel!
     @IBOutlet weak var hostport: UILabel!
     @IBOutlet weak var plugins: UILabel!
+    @IBOutlet weak var result: UILabel!
 }
 
