@@ -10,7 +10,6 @@
 //      - [SwiftSocket](https://github.com/swiftsocket/SwiftSocket)
 //      - SLP使用TCP链接
 
-import Foundation
 import SwiftSocket
 
 open class MCSLP {

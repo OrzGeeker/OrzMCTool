@@ -1,5 +1,5 @@
 //
-//  MCQueryViewController.swift
+//  MCServerListViewController.swift
 //  OrzMCTool
 //
 //  Created by joker on 2019/5/21.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MCQueryViewController: UIViewController {
+class MCServerListViewController: UIViewController {
 
     @IBOutlet weak var serverListTableView: UITableView!
     
@@ -45,6 +45,52 @@ class MCQueryViewController: UIViewController {
                 } else {
                     self.checkServer(host)
                 }
+            }
+        }
+        
+        alertVC.addAction(cancelAction)
+        alertVC.addAction(fetchAction)
+        
+        present(alertVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func sendCmdLongGesture(_ sender: UILongPressGestureRecognizer) {
+        if  sender.state == .began,
+            let tableView = self.serverListTableView, sender.view is UITableViewCell,
+            let indexPath = tableView.indexPath(for: sender.view as! UITableViewCell) {
+            let server = self.servers[indexPath.row]
+            self.sendRCONCmd(server.host, port: server.port)
+        }
+    }
+    
+    func sendRCONCmd(_ host: String, port: Int32 = MCRCON.defaultRCONPort) {
+        
+        print("Send RCON Cmd!")
+        
+        let alertVC = UIAlertController(title: "\(host):\(port)", message: nil, preferredStyle: .alert)
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "输入RCON密码"
+            textField.keyboardType = .default
+            textField.isSecureTextEntry = true
+            textField.keyboardAppearance = .dark
+            textField.returnKeyType = .next
+        }
+        
+        alertVC.addTextField { (textField) in
+            textField.placeholder = "输入指令"
+            textField.keyboardType = .default
+            textField.keyboardAppearance = .dark
+            textField.returnKeyType = .send
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let fetchAction = UIAlertAction(title: "发送", style: .default) { (action) in
+            if  let textFields = alertVC.textFields, textFields.count == 2,
+                let password = textFields[0].text,
+                let cmdStr = textFields[1].text {
+                print(password)
+                print(cmdStr)
             }
         }
         
@@ -125,7 +171,9 @@ class MCQueryViewController: UIViewController {
     }
 }
 
-extension MCQueryViewController: UITableViewDataSource {
+// MARK: DataSource Delegate
+
+extension MCServerListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MCServerStatusCell.cellId, for: indexPath) as! MCServerStatusCell
@@ -170,7 +218,8 @@ extension MCQueryViewController: UITableViewDataSource {
     }
 }
 
-extension MCQueryViewController: UITableViewDelegate {
+// MARK: TableViewDelegate
+extension MCServerListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

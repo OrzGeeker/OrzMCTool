@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Minecraft Query-->
+        <!--Minecraft Server-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MCQueryViewController" customModule="OrzMCTool" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MCServerListViewController" customModule="OrzMCTool" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,9 +54,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="0/20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJW-L7-Esp" userLabel="PlayerInfo">
-                                                    <rect key="frame" x="344" y="69" width="50" height="21"/>
+                                                    <rect key="frame" x="358" y="69" width="36" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="8k1-VI-orf"/>
                                                         <constraint firstAttribute="height" constant="21" id="z5S-FH-MxS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -136,6 +135,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="OfL-fG-rdi" secondAttribute="trailing" constant="20" symbolic="YES" id="xwU-CK-MNj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                         <connections>
                                             <outlet property="MOTD" destination="v6a-NL-ibX" id="3fo-R2-p9G"/>
                                             <outlet property="hostport" destination="OfL-fG-rdi" id="mak-VC-WeP"/>
@@ -147,6 +147,7 @@
                                             <outlet property="plugins" destination="rNd-De-QSI" id="opX-y0-nWU"/>
                                             <outlet property="type" destination="5Eg-gi-kuc" id="thr-eo-d5l"/>
                                             <outlet property="version" destination="cTK-GP-e0d" id="RKi-vy-L8m"/>
+                                            <outletCollection property="gestureRecognizers" destination="J1q-g7-lJ3" appends="YES" id="fRL-tU-M0S"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -165,7 +166,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Minecraft Query" id="Zjg-zc-XsD">
+                    <navigationItem key="navigationItem" title="Minecraft Server" id="Zjg-zc-XsD">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="U4k-RO-YmB">
                             <connections>
                                 <action selector="addServer:" destination="BYZ-38-t0r" id="egp-0R-KTz"/>
@@ -177,6 +178,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="J1q-g7-lJ3">
+                    <connections>
+                        <action selector="sendCmdLongGesture:" destination="BYZ-38-t0r" id="EjS-OU-CHD"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="lEv-4a-xjW"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1481.1594202898552" y="-28.125"/>
         </scene>

@@ -8,6 +8,7 @@
 //  Reference:
 //      - [Query](https://wiki.vg/Query)
 //      - [SwiftSocket](https://github.com/swiftsocket/SwiftSocket)
+//      - Query协议使用UDP
 //
 
 import SwiftSocket
