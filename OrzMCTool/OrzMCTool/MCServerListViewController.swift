@@ -9,7 +9,7 @@
 import UIKit
 
 class MCServerListViewController: UIViewController {
-
+    
     @IBOutlet weak var serverListTableView: UITableView!
     
     var servers = [MCServerInfo]()
@@ -18,6 +18,7 @@ class MCServerListViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         serverListTableView.estimatedRowHeight = 200
+        loadCache()
     }
     
     @IBAction func addServer(_ sender: UIBarButtonItem) {
@@ -145,7 +146,7 @@ class MCServerListViewController: UIViewController {
         checkWithQuery(host, port: port, queryPort: queryPort, rconPort: rconPort)
     }
     
-    func  checkWithSLP(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
+    func checkWithSLP(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
         DispatchQueue.global().async {
             let slp = MCSLP(host: host, port: port)
             do {
@@ -198,16 +199,20 @@ class MCServerListViewController: UIViewController {
                     self.serverListTableView.reloadData()
                 }
             }  else {
-                let alert = UIAlertController(title: "获取服务器状态失败", message: "请确认网络是否正常连接！", preferredStyle: .alert)
-                let action = UIAlertAction(title: "确认", style: .default, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
+                self.showMessageWithAlert(message: "请确认网络是否正常连接！", title: "获取服务器状态失败")
             }
         }
     }
     
     func processException(_ e: Error) {
-        print(e)
+        showMessageWithAlert(message: e.localizedDescription, title: "发生异常")
+    }
+
+    func showMessageWithAlert(message: String, title: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "确认", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -276,5 +281,21 @@ extension MCServerListViewController: UITableViewDelegate {
         default:
             break
         }
+    }
+}
+
+
+extension MCServerListViewController {
+    
+    enum CacheKeys: String {
+        case mcServers = "mc_servers"
+    }
+    
+    func loadCache() {
+        // TODO:
+    }
+
+    func syncToCache() {
+        // TODO: 
     }
 }

@@ -124,7 +124,7 @@ extension MCPacket {
     
     func readString() -> String? {
         let _ = try! readVarInt()
-        let ret = String(bytes: bytes[current..<bytes.count], encoding: .isoLatin1)
+        let ret = String(bytes: bytes[current..<bytes.count], encoding: .utf8)
         return ret
     }
 
