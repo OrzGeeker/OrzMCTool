@@ -5,12 +5,12 @@ DEPENDENCIES:
   - SwiftSocket
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - SwiftSocket
 
 SPEC CHECKSUMS:
   SwiftSocket: 6f4c9c63fbc5c1d61188936bb3c599fd546f40ae
 
-PODFILE CHECKSUM: 08713c6be87537d6d03445b531c6cbd3e563729e
+PODFILE CHECKSUM: bff6a093570b2b1ece0eed90c1012337294d3c5b
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.0.beta.1
