@@ -8,11 +8,11 @@
 //  Reference:
 //      - [RCON](https://wiki.vg/RCON)
 //      - [Source RCON Protocol](https://developer.valvesoftware.com/wiki/Source_RCON_Protocol)
-//      - [SwiftSocket](https://github.com/swiftsocket/SwiftSocket)
 //      - RCON使用TCP
 //
 
-import SwiftSocket
+import Foundation
+import Socket
 
 open class MCRCON {
     
@@ -24,52 +24,65 @@ open class MCRCON {
     // 端口号
     var port: Int32
     // TCPSocket 客户端
-    var client: TCPClient
+    var client: Socket?
     // 请求 ID
     var requestID: Int32
     
     init(host: String, port: Int32 = MCRCON.defaultRCONPort) {
         self.host = host
         self.port = port
-        self.client = TCPClient(address: host, port: port)
+        self.client = try? Socket.create()
         self.requestID = 0
     }
     
     func loginAndSendCmd(password: String, cmd: String) throws -> String? {
-        switch self.client.connect(timeout: 5) {
-        case .success:
-            let loginPacket = RCONPacket(id: self.requestID, type: .auth, body: password)
-            switch self.client.send(data: loginPacket.data) {
-            case .success:
-                guard let data = self.client.read(MCRCON.BUFF_SIZE_1K, timeout: 5) else {
-                    throw MCRCONError.authTimeout
+        
+        guard let client = self.client else {
+            print("Socket创建失败")
+            return nil
+        }
+        
+        do {
+            try client.connect(to: self.host, port: self.port, timeout: 5, familyOnly: true)
+            let loginPacket = RCONPacket(id: self.requestID, type: .auth, body: password)   
+            try client.write(from: Data(loginPacket.data))
+            
+            var data = Data()
+            _ = try client.read(into: &data)
+            
+            let bytes = [UInt8](data)
+            if let response = RCONPacket(bytes: bytes) {
+                guard response.id == loginPacket.id, response.type == .command else {
+                    throw MCRCONError.authFailed
                 }
-                if let response = RCONPacket(bytes: data) {
-                    guard response.id == loginPacket.id, response.type == .command else {
-                        throw MCRCONError.authFailed
-                    }
-                    let result = try self.sendCmd(cmd)
-                    return result
-                } else {
-                    throw MCRCONError.packetMalFormat
-                }
-            case .failure(let error):
-                 throw MCRCONError.sendCmdFailed(error)
+                let result = try self.sendCmd(cmd)
+                return result
+            } else {
+                throw MCRCONError.packetMalFormat
             }
-        case .failure(let error):
-            throw MCRCONError.connectFailed(error)
+        } catch let error {
+            print("\(error.localizedDescription)")
+            return nil
         }
     }
 
     func sendCmd(_ cmd: String) throws -> String? {
         print("Send Command: \(cmd)")
+        
+        guard let client = self.client else {
+            print("Socket创建失败")
+            return nil
+        }
+        
         let commandPacket = RCONPacket(id: self.requestID, type: .command, body: cmd)
-        switch self.client.send(data: commandPacket.data) {
-        case .success:
-            guard let data = self.client.read(MCRCON.BUFF_SIZE_1K, timeout: 5) else {
-                throw MCRCONError.sendCmdTimeout
-            }
-            if let response = RCONPacket(bytes: data) {
+        do {
+            try client.write(from: Data(commandPacket.data))
+            
+            var data = Data()
+            _ = try client.read(into: &data)
+
+            let bytes = [UInt8](data)
+            if let response = RCONPacket(bytes: bytes) {
                 guard commandPacket.id == response.id, response.type == .response else {
                     throw MCRCONError.responseInvalid
                 }
@@ -78,12 +91,13 @@ open class MCRCON {
             } else {
                 throw MCRCONError.packetMalFormat
             }
-        case .failure(let error):
-            throw MCRCONError.sendCmdFailed(error)
+        } catch let error {
+            print("\(error.localizedDescription)")
+            return nil
         }
     }
     
     deinit {
-        self.client.close()
+        client?.close()
     }
 }

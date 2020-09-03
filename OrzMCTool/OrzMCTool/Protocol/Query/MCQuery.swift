@@ -7,11 +7,11 @@
 //
 //  Reference:
 //      - [Query](https://wiki.vg/Query)
-//      - [SwiftSocket](https://github.com/swiftsocket/SwiftSocket)
 //      - Query协议使用UDP
 //
 
-import SwiftSocket
+import Foundation
+import Socket
 
 open class MCQuery {
     
@@ -22,7 +22,7 @@ open class MCQuery {
     // 端口号
     var port: Int32
     // UDPSocket 客户端
-    var client: UDPClient
+    var client: Socket?
     // token
     var token: Int32?
     // 会话ID
@@ -36,25 +36,36 @@ open class MCQuery {
     init(host: String, port: Int32 = MCQuery.defaultQueryPort) {
         self.host = host
         self.port = port
-        self.client = UDPClient(address: self.host, port: self.port)
+        self.client = try? Socket.create(family: .inet, type: .datagram, proto: .udp)
         self.sessionID = 1
     }
     
     /// 与Minecraft服务器进行握手，建立UDP连接
     func handshake() {
-        let handshakeRequest = Request(sessionID: self.sessionID)
-        switch self.client.send(data: handshakeRequest.packet()) {
-        case .success:
-            let (bytes, _, _) = self.client.recv(MCQuery.BUFF_SIZE)
-            if let data = bytes,let response = Response(data), let tokenLatin1String = response.payload.queryString()  {
+        
+        guard let client = self.client else {
+            print("创建Socket失败")
+            return
+        }
+        
+        do {
+            try client.connect(to: self.host, port: self.port)
+            let handshakeRequest = Request(sessionID: self.sessionID)
+            try client.write(from: Data(handshakeRequest.packet()))
+            
+            var data = Data()
+            _ = try client.read(into: &data)
+            
+            let bytes = [Byte](data)
+            if let response = Response(bytes), let tokenLatin1String = response.payload.queryString()  {
                 let tokenString = tokenLatin1String as NSString
                 print("handshake successfully!(token: \(tokenLatin1String))")
                 self.token = tokenString.intValue
             } else {
                 print("handshake failed!")
             }
-        case .failure(let error):
-            print(error.localizedDescription)
+        } catch let error {
+            print("\(error.localizedDescription)")
         }
     }
     
@@ -67,18 +78,26 @@ open class MCQuery {
             return nil
         }
         
+        guard let client = self.client else {
+            print("创建Socket失败")
+            return nil
+        }
+        
         let basicStatusRequest = Request(type: .status, sessionID: self.sessionID, payload: token.bigEndianBytes)
-        switch self.client.send(data: basicStatusRequest.packet()) {
-        case .success:
-            let (bytes, _, _) = self.client.recv(MCQuery.BUFF_SIZE)
-            if let data = bytes, let basicStatus = Response(data)?.parseBasicStatus() {
+        do {
+            try client.write(from: Data(basicStatusRequest.packet()))
+            
+            var data = Data()
+            _ = try client.read(into: &data)
+            let bytes = [Byte](data)
+            if let basicStatus = Response(bytes)?.parseBasicStatus() {
                 return basicStatus
             } else {
                 print("handshake failed!")
                 return nil
             }
-        case .failure(let error):
-            print(error.localizedDescription)
+        } catch let error {
+            print("\(error.localizedDescription)")
             return nil
         }
     }
@@ -91,21 +110,30 @@ open class MCQuery {
             print("Handshake failed!")
             return nil
         }
+        
+        guard let client = self.client else {
+            print("创建Socket失败")
+            return nil
+        }
+        
         var payload = [Byte]()
         payload.append(contentsOf: token.bigEndianBytes)
         payload.append(contentsOf: [0x00, 0x00, 0x00, 0x00])
         let fullStatusRequest = Request(type: .status, sessionID: self.sessionID, payload: payload)
-        switch self.client.send(data: fullStatusRequest.packet()) {
-        case .success:
-            let (bytes, _, _) = self.client.recv(MCQuery.BUFF_SIZE)
-            if let data = bytes, let fullStatus = Response(data)?.parseFullStatus() {
+        
+        do {
+            try client.write(from: Data(fullStatusRequest.packet()))
+            var data = Data()
+            try _ = client.read(into: &data)
+            let bytes = [Byte](data)
+            if let fullStatus = Response(bytes)?.parseFullStatus() {
                 return fullStatus
             } else {
                 print("handshake failed!")
                 return nil
             }
-        case .failure(let error):
-            print(error.localizedDescription)
+        } catch let error {
+            print("\(error.localizedDescription)")
             return nil
         }
     }
@@ -113,6 +141,6 @@ open class MCQuery {
     
     deinit {
         // 关闭Socket UDP连接
-        self.client.close()
+        client?.close()
     }
 }

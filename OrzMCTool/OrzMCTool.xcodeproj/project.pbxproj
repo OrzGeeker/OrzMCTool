@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,8 +12,7 @@
 		0EF6C1E72297DD36007661F2 /* MCQuery+Packet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6C1E62297DD36007661F2 /* MCQuery+Packet.swift */; };
 		0EF6C1E92297F1B5007661F2 /* MCServerStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6C1E82297F1B5007661F2 /* MCServerStatusCell.swift */; };
 		0EF6C1EB22980A8B007661F2 /* MCServerInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF6C1EA22980A8B007661F2 /* MCServerInfo.swift */; };
-		344E7903DB836997BB639CC2 /* Pods_OrzMCTool.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5481E39E0BB485051DB58028 /* Pods_OrzMCTool.framework */; };
-		BC4340FFEBDFA5C2C9F06502 /* Pods_OrzMCToolTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CFFDA5BBFC18708A7BDAB64 /* Pods_OrzMCToolTests.framework */; };
+		E220FD1F25009AFA00451FB2 /* Socket in Frameworks */ = {isa = PBXBuildFile; productRef = E220FD1E25009AFA00451FB2 /* Socket */; };
 		F320DA9022B3D76500645FF1 /* MCRCONError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F320DA8F22B3D76500645FF1 /* MCRCONError.swift */; };
 		F3334767229439CB00C5C81C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3334766229439CB00C5C81C /* AppDelegate.swift */; };
 		F3334769229439CB00C5C81C /* MCServerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3334768229439CB00C5C81C /* MCServerListViewController.swift */; };
@@ -51,12 +50,6 @@
 		0EF6C1E62297DD36007661F2 /* MCQuery+Packet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MCQuery+Packet.swift"; sourceTree = "<group>"; };
 		0EF6C1E82297F1B5007661F2 /* MCServerStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCServerStatusCell.swift; sourceTree = "<group>"; };
 		0EF6C1EA22980A8B007661F2 /* MCServerInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCServerInfo.swift; sourceTree = "<group>"; };
-		2C05CEF2D05B79F9F3C7738D /* Pods-OrzMCTool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzMCTool.release.xcconfig"; path = "Target Support Files/Pods-OrzMCTool/Pods-OrzMCTool.release.xcconfig"; sourceTree = "<group>"; };
-		5481E39E0BB485051DB58028 /* Pods_OrzMCTool.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrzMCTool.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CFFDA5BBFC18708A7BDAB64 /* Pods_OrzMCToolTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrzMCToolTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		87177055EBB07ED06821F521 /* Pods-OrzMCToolTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzMCToolTests.release.xcconfig"; path = "Target Support Files/Pods-OrzMCToolTests/Pods-OrzMCToolTests.release.xcconfig"; sourceTree = "<group>"; };
-		BCF40EA8C592903B9FF045BC /* Pods-OrzMCToolTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzMCToolTests.debug.xcconfig"; path = "Target Support Files/Pods-OrzMCToolTests/Pods-OrzMCToolTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DDADC1764BB3C93A36FA43B0 /* Pods-OrzMCTool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrzMCTool.debug.xcconfig"; path = "Target Support Files/Pods-OrzMCTool/Pods-OrzMCTool.debug.xcconfig"; sourceTree = "<group>"; };
 		F320DA8F22B3D76500645FF1 /* MCRCONError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCRCONError.swift; sourceTree = "<group>"; };
 		F3334763229439CB00C5C81C /* OrzMCTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrzMCTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3334766229439CB00C5C81C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				344E7903DB836997BB639CC2 /* Pods_OrzMCTool.framework in Frameworks */,
+				E220FD1F25009AFA00451FB2 /* Socket in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,29 +88,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC4340FFEBDFA5C2C9F06502 /* Pods_OrzMCToolTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		41305D81BD2B7E3DCC476298 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5481E39E0BB485051DB58028 /* Pods_OrzMCTool.framework */,
-				7CFFDA5BBFC18708A7BDAB64 /* Pods_OrzMCToolTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		78E09C09F50CC208FD3F37D3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				DDADC1764BB3C93A36FA43B0 /* Pods-OrzMCTool.debug.xcconfig */,
-				2C05CEF2D05B79F9F3C7738D /* Pods-OrzMCTool.release.xcconfig */,
-				BCF40EA8C592903B9FF045BC /* Pods-OrzMCToolTests.debug.xcconfig */,
-				87177055EBB07ED06821F521 /* Pods-OrzMCToolTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -129,7 +108,6 @@
 				F333477A229439CD00C5C81C /* OrzMCToolTests */,
 				F3334764229439CB00C5C81C /* Products */,
 				78E09C09F50CC208FD3F37D3 /* Pods */,
-				41305D81BD2B7E3DCC476298 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -221,17 +199,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3334780229439CD00C5C81C /* Build configuration list for PBXNativeTarget "OrzMCTool" */;
 			buildPhases = (
-				3F0DBEAFE3FC4A6DEB4379E5 /* [CP] Check Pods Manifest.lock */,
 				F333475F229439CB00C5C81C /* Sources */,
 				F3334760229439CB00C5C81C /* Frameworks */,
 				F3334761229439CB00C5C81C /* Resources */,
-				A715E2C8C55378D89D42F2C7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = OrzMCTool;
+			packageProductDependencies = (
+				E220FD1E25009AFA00451FB2 /* Socket */,
+			);
 			productName = OrzMCTool;
 			productReference = F3334763229439CB00C5C81C /* OrzMCTool.app */;
 			productType = "com.apple.product-type.application";
@@ -240,7 +219,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3334783229439CD00C5C81C /* Build configuration list for PBXNativeTarget "OrzMCToolTests" */;
 			buildPhases = (
-				99921C619B1BBBF012341897 /* [CP] Check Pods Manifest.lock */,
 				F3334773229439CD00C5C81C /* Sources */,
 				F3334774229439CD00C5C81C /* Frameworks */,
 				F3334775229439CD00C5C81C /* Resources */,
@@ -283,6 +261,9 @@
 				Base,
 			);
 			mainGroup = F333475A229439CB00C5C81C;
+			packageReferences = (
+				E220FD1D25009AFA00451FB2 /* XCRemoteSwiftPackageReference "BlueSocket" */,
+			);
 			productRefGroup = F3334764229439CB00C5C81C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -312,70 +293,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		3F0DBEAFE3FC4A6DEB4379E5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OrzMCTool-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		99921C619B1BBBF012341897 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-OrzMCToolTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A715E2C8C55378D89D42F2C7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OrzMCTool/Pods-OrzMCTool-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OrzMCTool/Pods-OrzMCTool-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OrzMCTool/Pods-OrzMCTool-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F333475F229439CB00C5C81C /* Sources */ = {
@@ -561,7 +478,6 @@
 		};
 		F3334781229439CD00C5C81C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DDADC1764BB3C93A36FA43B0 /* Pods-OrzMCTool.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -580,7 +496,6 @@
 		};
 		F3334782229439CD00C5C81C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C05CEF2D05B79F9F3C7738D /* Pods-OrzMCTool.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -599,7 +514,6 @@
 		};
 		F3334784229439CD00C5C81C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCF40EA8C592903B9FF045BC /* Pods-OrzMCToolTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -620,7 +534,6 @@
 		};
 		F3334785229439CD00C5C81C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87177055EBB07ED06821F521 /* Pods-OrzMCToolTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -670,6 +583,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E220FD1D25009AFA00451FB2 /* XCRemoteSwiftPackageReference "BlueSocket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/IBM-Swift/BlueSocket.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.52;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E220FD1E25009AFA00451FB2 /* Socket */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E220FD1D25009AFA00451FB2 /* XCRemoteSwiftPackageReference "BlueSocket" */;
+			productName = Socket;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F333475B229439CB00C5C81C /* Project object */;
 }

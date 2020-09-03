@@ -7,10 +7,10 @@
 //
 //  Reference:
 //      - [SLP](https://wiki.vg/Server_List_Ping)
-//      - [SwiftSocket](https://github.com/swiftsocket/SwiftSocket)
 //      - SLP使用TCP链接
 
-import SwiftSocket
+import Foundation
+import Socket
 
 open class MCSLP {
     static let BUFF_SIZE_1K = 1024                          // 1K
@@ -22,7 +22,7 @@ open class MCSLP {
     // 端口号
     var port: Int32
     // TCP Socket
-    var client: TCPClient
+    var client: Socket?
     
     /// 初始化一个SLP查询实例
     ///
@@ -32,13 +32,18 @@ open class MCSLP {
     init(host: String, port: Int32 = MCSLP.defaultPort) {
         self.host = host
         self.port = port
-        self.client = TCPClient(address: self.host, port: self.port)
+        self.client = try? Socket.create()
     }
     
     
     func handshake() throws {
-        switch self.client.connect(timeout: 5) {
-        case .success:
+        
+        guard let client = self.client else {
+            print("Socket 创建失败")
+            return
+        }
+        do {
+            try client.connect(to: self.host, port: self.port)
             let handshakePacket = MCPacket()
             handshakePacket.writeID(0x00)
             handshakePacket.writeVarInt(value: -1)
@@ -46,30 +51,33 @@ open class MCSLP {
             handshakePacket.writeUnsignedShort(value: UInt16(port))
             handshakePacket.writeVarInt(value: 1)
             handshakePacket.encapsulate()
-            switch self.client.send(data: handshakePacket.data) {
-            case .success:
-                break
-            case .failure(let error):
-                throw MCError.handshakeFailed(error)
-            }
-        case .failure(let error):
-            throw MCError.connectFailed(error)
+            try client.write(from: Data(handshakePacket.data))
+        } catch let error {
+            print("\(error.localizedDescription)")
         }
     }
     
     func status() throws -> (status: String?, ping: Int) {
+        
+        guard let client = self.client else {
+            print("Socket 创建失败")
+            return (nil,0)
+        }
+        
         let requestPacket = MCPacket()
         requestPacket.writeID(0x00)
         requestPacket.encapsulate()
         
-        switch self.client.send(data: requestPacket.data) {
-        case .success:
+        do {
+            try client.write(from: Data(requestPacket.data))
             usleep(400000)
-            guard let data = self.client.read(MCSLP.BUFF_SIZE_40K, timeout: 5) else {
-                throw MCError.checkStatusTimeout
-            }
             
-            let reponse = MCPacket(bytes: data)
+            var data = Data()
+            _ = try client.read(into: &data)
+            
+            
+            let bytes = [Byte](data)
+            let reponse = MCPacket(bytes: bytes)
             // PacketLength
             let _ = try! reponse.readVarInt()
             // packetID
@@ -79,38 +87,47 @@ open class MCSLP {
             
             let ping = try self.ping()
             return (status: jsonStr, ping: ping)
-            
-        case .failure(let error):
-            throw MCError.checkStatusFailed(error)
+        } catch let error {
+            print("\(error.localizedDescription)")
+            return (nil,0)
         }
     }
     
     func ping() throws -> Int {
         
-        let pingPacket = MCPacket()
-        pingPacket.writeID(0x01)
-        pingPacket.writeLong(value: Int64.max)
-        pingPacket.encapsulate()
+        guard let client = self.client else {
+            print("Socket 创建失败")
+            return 0
+        }
         
-        let startTime = Date()
-        switch self.client.send(data: pingPacket.data) {
-        case .success:
-            guard let data = self.client.read(MCSLP.BUFF_SIZE_1K, timeout: 5) else {
-                throw MCError.pingTimeout
-            }
-            let pongPacket = MCPacket(bytes: data)
+        do {
+        
+            let pingPacket = MCPacket()
+            pingPacket.writeID(0x01)
+            pingPacket.writeLong(value: Int64.max)
+            pingPacket.encapsulate()
+            
+            let startTime = Date()
+            
+            try client.write(from: Data(pingPacket.data))
+            
+            var data = Data()
+            _ = try client.read(into: &data)
+            let bytes = [Byte](data)
+            let pongPacket = MCPacket(bytes: bytes)
             if pingPacket == pongPacket {
                 let milliSeconds = Int(Date().timeIntervalSince(startTime) * 1000)
                 return milliSeconds
             } else {
                 throw MCError.pingFailed(nil)
             }
-        case .failure(let error):
-            throw MCError.pingFailed(error)
+        } catch let error {
+            print("\(error.localizedDescription)")
+            return 0
         }
     }
     
     deinit {
-         self.client.close()
+        client?.close()
     }
 }
