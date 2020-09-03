@@ -95,8 +95,6 @@ class MCServerListViewController: UIViewController {
     
     func sendRCONCmd(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32, indexPath: IndexPath) {
         
-        print("Send RCON Cmd!")
-        
         let alertVC = UIAlertController(title: "\(host):\(rconPort)", message: nil, preferredStyle: .alert)
         
         alertVC.addTextField { (textField) in
@@ -151,11 +149,6 @@ class MCServerListViewController: UIViewController {
             let slp = MCSLP(host: host, port: port)
             do {
                 try slp.handshake()
-            } catch let e {
-                self.processException(e)
-            }
-            
-            do {
                 let (status, ping) = try slp.status()
                 if  let jsonData = status?.data(using: .utf8) {
                     let jsonDecoder = JSONDecoder()
@@ -171,8 +164,6 @@ class MCServerListViewController: UIViewController {
                         self.servers.append(serverInfo)
                     }
                     DispatchQueue.main.async {
-                        print(status)
-                        print("\(ping) ms")
                         self.serverListTableView.reloadData()
                     }
                 }
@@ -185,8 +176,8 @@ class MCServerListViewController: UIViewController {
     func checkWithQuery(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
         DispatchQueue.global().async {
             let query = MCQuery(host: host, port: port)
-            query.handshake()
-            if let fullStatus = query.fullStatus() {
+            try! query.handshake()
+            if let fullStatus = try? query.fullStatus() {
                 var serverInfo = MCServerInfo(host: host, port: port, queryPort: queryPort, rconPort: rconPort)
                 serverInfo.statusInfo.queryServerFullStatus = fullStatus
                 if let index = self.servers.firstIndex(of: serverInfo) {
@@ -209,10 +200,12 @@ class MCServerListViewController: UIViewController {
     }
 
     func showMessageWithAlert(message: String, title: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "确认", style: .default, handler: nil)
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "确认", style: .default, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
@@ -257,7 +250,6 @@ extension MCServerListViewController: UITableViewDataSource {
         
         return cell
     }
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.servers.count

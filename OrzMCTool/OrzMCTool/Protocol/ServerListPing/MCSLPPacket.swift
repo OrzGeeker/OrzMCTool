@@ -1,5 +1,5 @@
 //
-//  MCPacket.swift
+//  MCSLPPacket.swift
 //  OrzMCTool
 //
 //  Created by joker on 2019/6/10.
@@ -12,10 +12,10 @@
 
 import Foundation
 
-class MCPacket {
+class MCSLPPacket {
     
-    var data: [UInt8] {
-        return bytes
+    var data: Data {
+        return Data(bytes)
     }
     
     private var bytes =  [UInt8]()
@@ -63,7 +63,8 @@ class MCPacket {
         return ret
     }
     
-    init(bytes: [UInt8] = [UInt8]()) {
+    init(data: Data = Data()) {
+        let bytes = [Byte](data)
         self.bytes = bytes
         self.current = 0
     }
@@ -78,7 +79,7 @@ class MCPacket {
     }
 }
 
-extension MCPacket {
+extension MCSLPPacket {
     
     func readID() -> UInt8? {
         return  readByte()
@@ -99,7 +100,7 @@ extension MCPacket {
 
             numRead += 1
             if (numRead > 5) {
-                throw MCError.VarIntTooBig
+                throw MCSLPError.VarIntTooBig
             }
         } while ((read & 0b10000000) != 0)
         
@@ -139,9 +140,9 @@ extension MCPacket {
 }
 
 
-extension MCPacket: Equatable {
+extension MCSLPPacket: Equatable {
     
-    static func == (lhs: MCPacket, rhs: MCPacket) -> Bool {
+    static func == (lhs: MCSLPPacket, rhs: MCSLPPacket) -> Bool {
         guard lhs.data.count == rhs.data.count else {
             return false
         }

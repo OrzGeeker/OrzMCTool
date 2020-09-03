@@ -18,7 +18,7 @@ extension String {
             if char == sectionChar {
                 continue
             }
-            if (curIndex > self.startIndex && self[self.index(curIndex, offsetBy: -1)] == sectionChar) {
+            if curIndex > self.startIndex && self[self.index(curIndex, offsetBy: -1)] == sectionChar {
                 continue
             }
             motd.append(char)

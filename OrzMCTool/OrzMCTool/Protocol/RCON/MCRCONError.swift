@@ -9,11 +9,8 @@
 import Foundation
 
 enum MCRCONError: Error {
-    case connectFailed(Error?)
-    case sendCmdFailed(Error?)
-    case authTimeout
     case packetMalFormat
     case authFailed
-    case sendCmdTimeout
     case responseInvalid
+    case socketCreateFailed
 }

@@ -21,7 +21,7 @@ struct RCONPacket {
     private(set) var type: Type
     private(set) var body: String
     
-    var data: [UInt8] {
+    var data: Data {
         get {
             var bytes = [UInt8]()
             bytes.append(contentsOf: id.littleEndianBytes)
@@ -33,7 +33,9 @@ struct RCONPacket {
             bytes.append(0x00)
             let size: Int32 = Int32(bytes.count)
             bytes.insert(contentsOf: size.littleEndianBytes, at: 0)
-            return bytes
+            
+            
+            return Data(bytes)
         }
     }
     
@@ -43,15 +45,17 @@ struct RCONPacket {
         self.body = body
     }
     
-    init?(bytes: [UInt8]) {
+    init?(data: Data?) {
+        guard let validData = data else {
+            return nil
+        }
+        let bytes = [Byte](validData)
         if  let size = [UInt8](bytes[0...3]).readInt32LittenEndian(), size >= 10,
             let id = [UInt8](bytes[4...7]).readInt32LittenEndian(),
             let typeRawValue = [UInt8](bytes[8...11]).readInt32LittenEndian(),
             let type = Type(rawValue: typeRawValue),
             let body = String(bytes: [UInt8](bytes[12..<Int(size + 3)]), encoding: .utf8) {
-                self.id = id
-                self.type = type
-                self.body = body
+            self.init(id: id, type: type, body: body)
         } else {
             return nil
         }

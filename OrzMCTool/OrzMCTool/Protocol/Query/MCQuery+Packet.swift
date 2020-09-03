@@ -13,20 +13,12 @@ typealias Byte = UInt8
 
 extension MCQuery {
     
-    // 设置UDP接收缓存
-    static let BUFF_SIZE = 4 * 1024
-    
     enum `Type`: Byte {
         case handshake = 0x09
         case status = 0x00
         case unknowned = 0xFF
     }
-    
-    enum MCError {
-        case handshakeFailed
-        case parseStatusFailed
-    }
-    
+        
     // Minecraft Query协议请求包格式定义和处理
     struct Request {
         private let magic: [Byte] = [0xFE, 0xFD]
@@ -40,7 +32,7 @@ extension MCQuery {
             self.payload = payload
         }
         
-        func packet() -> [Byte] {
+        func packet() -> Data {
             var bytes = [Byte]()
             bytes.append(contentsOf: self.magic)
             bytes.append(self.type.rawValue)
@@ -48,7 +40,7 @@ extension MCQuery {
             if let payload = self.payload {
                 bytes.append(contentsOf: payload)
             }
-            return bytes
+            return Data(bytes)
         }
     }
     
@@ -59,11 +51,12 @@ extension MCQuery {
         let sessionID: [Byte]
         let payload: [Byte]
         
-        init? (_ data: [Byte]) {
-            if(data.count >= 5) {
-                self.type = Type(rawValue: data[0]) ?? Type.unknowned
-                self.sessionID = [Byte](data[1..<5])
-                self.payload = [Byte](data[5..<data.count])
+        init? (_ data: Data) {
+            let bytes = [Byte](data)
+            if(bytes.count >= 5) {
+                self.type = Type(rawValue: bytes[0]) ?? Type.unknowned
+                self.sessionID = [Byte](bytes[1..<5])
+                self.payload = [Byte](bytes[5..<bytes.count])
             } else {
                 return nil
             }
@@ -75,7 +68,7 @@ extension MCQuery {
         /// - Returns: 服务器基础信息字符串数组
         func parseBasicStatus() -> MCServerBasicStatus? {
             var statusInfo = [String]()
-            if(self.type == .status) {
+            if self.type == .status {
                 var lastIndex = 0
                 for (index, byte) in payload.enumerated() {
                     if(statusInfo.count == 5) {
@@ -95,7 +88,7 @@ extension MCQuery {
                 }
             }
             guard statusInfo.count == 7 else {
-                return nil;
+                return nil
             }
             
             return MCServerBasicStatus(
@@ -111,9 +104,9 @@ extension MCQuery {
         
         
         /// 从响应数据中提取服务器详细信息
-        func parseFullStatus () -> MCServerFullStatus?{
+        func parseFullStatus () -> MCServerFullStatus? {
             let paddingCount = 11
-            if(self.type == .status) {
+            if self.type == .status {
                 var keyValueInfo = [String]()
                 var lastIndex = 0
                 let invalidPayload = [Byte](payload[paddingCount..<payload.count])
