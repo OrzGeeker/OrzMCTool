@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Socket
 
 class MCServerListViewController: UIViewController {
     
@@ -141,7 +142,7 @@ class MCServerListViewController: UIViewController {
     
     func checkServer(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
         checkWithSLP(host, port: port, queryPort: queryPort, rconPort: rconPort)
-        checkWithQuery(host, port: port, queryPort: queryPort, rconPort: rconPort)
+//        checkWithQuery(host, port: port, queryPort: queryPort, rconPort: rconPort)
     }
     
     func checkWithSLP(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
@@ -175,28 +176,38 @@ class MCServerListViewController: UIViewController {
     
     func checkWithQuery(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
         DispatchQueue.global().async {
-            let query = MCQuery(host: host, port: port)
-            try! query.handshake()
-            if let fullStatus = try? query.fullStatus() {
-                var serverInfo = MCServerInfo(host: host, port: port, queryPort: queryPort, rconPort: rconPort)
-                serverInfo.statusInfo.queryServerFullStatus = fullStatus
-                if let index = self.servers.firstIndex(of: serverInfo) {
-                    self.servers[index].statusInfo.queryServerFullStatus = fullStatus
-                } else {
-                    self.servers.append(serverInfo)
+            do {
+                let query = MCQuery(host: host, port: port)
+                try query.handshake()
+                if let fullStatus = try? query.fullStatus() {
+                    var serverInfo = MCServerInfo(host: host, port: port, queryPort: queryPort, rconPort: rconPort)
+                    serverInfo.statusInfo.queryServerFullStatus = fullStatus
+                    if let index = self.servers.firstIndex(of: serverInfo) {
+                        self.servers[index].statusInfo.queryServerFullStatus = fullStatus
+                    } else {
+                        self.servers.append(serverInfo)
+                    }
+                    DispatchQueue.main.async {
+                        print(fullStatus)
+                        self.serverListTableView.reloadData()
+                    }
+                }  else {
+                    self.showMessageWithAlert(message: "请确认网络是否正常连接！", title: "获取服务器状态失败")
                 }
-                DispatchQueue.main.async {
-                    print(fullStatus)
-                    self.serverListTableView.reloadData()
-                }
-            }  else {
-                self.showMessageWithAlert(message: "请确认网络是否正常连接！", title: "获取服务器状态失败")
+            } catch let error {
+                self.processException(error)
             }
         }
     }
     
     func processException(_ e: Error) {
-        showMessageWithAlert(message: e.localizedDescription, title: "发生异常")
+        
+        if let socketError = e as? Socket.Error {
+            showMessageWithAlert(message: socketError.description, title: "发生异常")
+        } else {
+            showMessageWithAlert(message: e.localizedDescription, title: "发生异常")
+        }
+        
     }
 
     func showMessageWithAlert(message: String, title: String) {
