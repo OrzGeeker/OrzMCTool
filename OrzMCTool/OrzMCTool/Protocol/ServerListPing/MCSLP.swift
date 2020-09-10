@@ -21,7 +21,7 @@ open class MCSLP {
     var port: Int32
     // TCP Socket
     lazy var client: Socket? = {
-        try? Socket.create()
+        try? Socket.create(family: .inet, type: .stream, proto: .tcp)
     }()
     
     /// 初始化一个SLP查询实例

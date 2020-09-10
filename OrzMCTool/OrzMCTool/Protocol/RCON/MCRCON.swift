@@ -27,7 +27,7 @@ open class MCRCON {
     
     /// TCPSocket 客户端
     lazy var client: Socket? = {
-       return try? Socket.create()
+        return try? Socket.create(family: .inet, type: .stream, proto: .tcp)
     }()
     
     /// 请求 ID
