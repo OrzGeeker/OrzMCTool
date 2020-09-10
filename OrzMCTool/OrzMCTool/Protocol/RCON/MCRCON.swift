@@ -56,7 +56,7 @@ open class MCRCON {
         }
         
         if !client.isConnected {
-            try client.connect(to: self.host, port: self.port, timeout: 5, familyOnly: true)
+            try client.connect(to: self.host, port: self.port)
         }
         
         let loginPacket = RCONPacket(id: self.requestID, type: .auth, body: password)
@@ -87,7 +87,7 @@ open class MCRCON {
         
         let commandPacket = RCONPacket(id: self.requestID, type: .command, body: cmd)
         try client.write(from: commandPacket.data)
-        
+
         var data = Data()
         let bytesCount = try client.read(into: &data)
         if bytesCount > 0, let response = RCONPacket(data: data) {
