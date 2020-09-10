@@ -142,7 +142,7 @@ class MCServerListViewController: UIViewController {
     
     func checkServer(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
         checkWithSLP(host, port: port, queryPort: queryPort, rconPort: rconPort)
-//        checkWithQuery(host, port: port, queryPort: queryPort, rconPort: rconPort)
+        checkWithQuery(host, port: port, queryPort: queryPort, rconPort: rconPort)
     }
     
     func checkWithSLP(_ host: String, port: Int32, queryPort: Int32, rconPort: Int32) {
