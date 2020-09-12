@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E25C4886250D2C6F00599FBC /* OrzMCCore in Resources */ = {isa = PBXBuildFile; fileRef = E25C4885250D2C6F00599FBC /* OrzMCCore */; };
+		E2BCC2102501FDD20043EF59 /* OrzMCAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */; };
+		E2BCC2122501FDD20043EF59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC2112501FDD20043EF59 /* ContentView.swift */; };
+		E2BCC2142501FDD30043EF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BCC2132501FDD30043EF59 /* Assets.xcassets */; };
+		E2BCC2172501FDD30043EF59 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BCC2162501FDD30043EF59 /* Preview Assets.xcassets */; };
+		E2BCC2222501FDD40043EF59 /* OrzMCAdminTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC2212501FDD40043EF59 /* OrzMCAdminTests.swift */; };
+		E2BCC22D2501FDD40043EF59 /* OrzMCAdminUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC22C2501FDD40043EF59 /* OrzMCAdminUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E2BCC21E2501FDD40043EF59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2BCC2042501FDD20043EF59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2BCC20B2501FDD20043EF59;
+			remoteInfo = OrzMCAdmin;
+		};
+		E2BCC2292501FDD40043EF59 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2BCC2042501FDD20043EF59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2BCC20B2501FDD20043EF59;
+			remoteInfo = OrzMCAdmin;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E25C4885250D2C6F00599FBC /* OrzMCCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OrzMCCore; path = ../../Sources/OrzMCCore; sourceTree = "<group>"; };
+		E2BCC20C2501FDD20043EF59 /* OrzMCAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrzMCAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCAdminApp.swift; sourceTree = "<group>"; };
+		E2BCC2112501FDD20043EF59 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E2BCC2132501FDD30043EF59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2BCC2162501FDD30043EF59 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E2BCC2182501FDD30043EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2BCC21D2501FDD40043EF59 /* OrzMCAdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrzMCAdminTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2BCC2212501FDD40043EF59 /* OrzMCAdminTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCAdminTests.swift; sourceTree = "<group>"; };
+		E2BCC2232501FDD40043EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2BCC2282501FDD40043EF59 /* OrzMCAdminUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrzMCAdminUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2BCC22C2501FDD40043EF59 /* OrzMCAdminUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCAdminUITests.swift; sourceTree = "<group>"; };
+		E2BCC22E2501FDD40043EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E2BCC2092501FDD20043EF59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2BCC21A2501FDD40043EF59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2BCC2252501FDD40043EF59 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E2BCC2032501FDD20043EF59 = {
+			isa = PBXGroup;
+			children = (
+				E2BCC20E2501FDD20043EF59 /* OrzMCAdmin */,
+				E2BCC2202501FDD40043EF59 /* OrzMCAdminTests */,
+				E2BCC22B2501FDD40043EF59 /* OrzMCAdminUITests */,
+				E2BCC20D2501FDD20043EF59 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E2BCC20D2501FDD20043EF59 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2BCC20C2501FDD20043EF59 /* OrzMCAdmin.app */,
+				E2BCC21D2501FDD40043EF59 /* OrzMCAdminTests.xctest */,
+				E2BCC2282501FDD40043EF59 /* OrzMCAdminUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2BCC20E2501FDD20043EF59 /* OrzMCAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				E25C4885250D2C6F00599FBC /* OrzMCCore */,
+				E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */,
+				E2BCC2112501FDD20043EF59 /* ContentView.swift */,
+				E2BCC2132501FDD30043EF59 /* Assets.xcassets */,
+				E2BCC2182501FDD30043EF59 /* Info.plist */,
+				E2BCC2152501FDD30043EF59 /* Preview Content */,
+			);
+			path = OrzMCAdmin;
+			sourceTree = "<group>";
+		};
+		E2BCC2152501FDD30043EF59 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E2BCC2162501FDD30043EF59 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E2BCC2202501FDD40043EF59 /* OrzMCAdminTests */ = {
+			isa = PBXGroup;
+			children = (
+				E2BCC2212501FDD40043EF59 /* OrzMCAdminTests.swift */,
+				E2BCC2232501FDD40043EF59 /* Info.plist */,
+			);
+			path = OrzMCAdminTests;
+			sourceTree = "<group>";
+		};
+		E2BCC22B2501FDD40043EF59 /* OrzMCAdminUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E2BCC22C2501FDD40043EF59 /* OrzMCAdminUITests.swift */,
+				E2BCC22E2501FDD40043EF59 /* Info.plist */,
+			);
+			path = OrzMCAdminUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E2BCC20B2501FDD20043EF59 /* OrzMCAdmin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2BCC2312501FDD40043EF59 /* Build configuration list for PBXNativeTarget "OrzMCAdmin" */;
+			buildPhases = (
+				E2BCC2082501FDD20043EF59 /* Sources */,
+				E2BCC2092501FDD20043EF59 /* Frameworks */,
+				E2BCC20A2501FDD20043EF59 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OrzMCAdmin;
+			productName = OrzMCAdmin;
+			productReference = E2BCC20C2501FDD20043EF59 /* OrzMCAdmin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E2BCC21C2501FDD40043EF59 /* OrzMCAdminTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2BCC2342501FDD40043EF59 /* Build configuration list for PBXNativeTarget "OrzMCAdminTests" */;
+			buildPhases = (
+				E2BCC2192501FDD40043EF59 /* Sources */,
+				E2BCC21A2501FDD40043EF59 /* Frameworks */,
+				E2BCC21B2501FDD40043EF59 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2BCC21F2501FDD40043EF59 /* PBXTargetDependency */,
+			);
+			name = OrzMCAdminTests;
+			productName = OrzMCAdminTests;
+			productReference = E2BCC21D2501FDD40043EF59 /* OrzMCAdminTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E2BCC2272501FDD40043EF59 /* OrzMCAdminUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2BCC2372501FDD40043EF59 /* Build configuration list for PBXNativeTarget "OrzMCAdminUITests" */;
+			buildPhases = (
+				E2BCC2242501FDD40043EF59 /* Sources */,
+				E2BCC2252501FDD40043EF59 /* Frameworks */,
+				E2BCC2262501FDD40043EF59 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2BCC22A2501FDD40043EF59 /* PBXTargetDependency */,
+			);
+			name = OrzMCAdminUITests;
+			productName = OrzMCAdminUITests;
+			productReference = E2BCC2282501FDD40043EF59 /* OrzMCAdminUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E2BCC2042501FDD20043EF59 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					E2BCC20B2501FDD20043EF59 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					E2BCC21C2501FDD40043EF59 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = E2BCC20B2501FDD20043EF59;
+					};
+					E2BCC2272501FDD40043EF59 = {
+						CreatedOnToolsVersion = 12.0;
+						TestTargetID = E2BCC20B2501FDD20043EF59;
+					};
+				};
+			};
+			buildConfigurationList = E2BCC2072501FDD20043EF59 /* Build configuration list for PBXProject "OrzMCAdmin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E2BCC2032501FDD20043EF59;
+			productRefGroup = E2BCC20D2501FDD20043EF59 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2BCC20B2501FDD20043EF59 /* OrzMCAdmin */,
+				E2BCC21C2501FDD40043EF59 /* OrzMCAdminTests */,
+				E2BCC2272501FDD40043EF59 /* OrzMCAdminUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2BCC20A2501FDD20043EF59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2BCC2172501FDD30043EF59 /* Preview Assets.xcassets in Resources */,
+				E2BCC2142501FDD30043EF59 /* Assets.xcassets in Resources */,
+				E25C4886250D2C6F00599FBC /* OrzMCCore in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2BCC21B2501FDD40043EF59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2BCC2262501FDD40043EF59 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E2BCC2082501FDD20043EF59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2BCC2122501FDD20043EF59 /* ContentView.swift in Sources */,
+				E2BCC2102501FDD20043EF59 /* OrzMCAdminApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2BCC2192501FDD40043EF59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2BCC2222501FDD40043EF59 /* OrzMCAdminTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2BCC2242501FDD40043EF59 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2BCC22D2501FDD40043EF59 /* OrzMCAdminUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2BCC21F2501FDD40043EF59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2BCC20B2501FDD20043EF59 /* OrzMCAdmin */;
+			targetProxy = E2BCC21E2501FDD40043EF59 /* PBXContainerItemProxy */;
+		};
+		E2BCC22A2501FDD40043EF59 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2BCC20B2501FDD20043EF59 /* OrzMCAdmin */;
+			targetProxy = E2BCC2292501FDD40043EF59 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E2BCC22F2501FDD40043EF59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E2BCC2302501FDD40043EF59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E2BCC2322501FDD40043EF59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"OrzMCAdmin/Preview Content\"";
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = OrzMCAdmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.OrzMCAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E2BCC2332501FDD40043EF59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"OrzMCAdmin/Preview Content\"";
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = OrzMCAdmin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.OrzMCAdmin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E2BCC2352501FDD40043EF59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				INFOPLIST_FILE = OrzMCAdminTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.OrzMCAdminTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrzMCAdmin.app/OrzMCAdmin";
+			};
+			name = Debug;
+		};
+		E2BCC2362501FDD40043EF59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				INFOPLIST_FILE = OrzMCAdminTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.OrzMCAdminTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OrzMCAdmin.app/OrzMCAdmin";
+			};
+			name = Release;
+		};
+		E2BCC2382501FDD40043EF59 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				INFOPLIST_FILE = OrzMCAdminUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.OrzMCAdminUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OrzMCAdmin;
+			};
+			name = Debug;
+		};
+		E2BCC2392501FDD40043EF59 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2N62934Y28;
+				INFOPLIST_FILE = OrzMCAdminUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.joker.OrzMCAdminUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = OrzMCAdmin;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E2BCC2072501FDD20043EF59 /* Build configuration list for PBXProject "OrzMCAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2BCC22F2501FDD40043EF59 /* Debug */,
+				E2BCC2302501FDD40043EF59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2BCC2312501FDD40043EF59 /* Build configuration list for PBXNativeTarget "OrzMCAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2BCC2322501FDD40043EF59 /* Debug */,
+				E2BCC2332501FDD40043EF59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2BCC2342501FDD40043EF59 /* Build configuration list for PBXNativeTarget "OrzMCAdminTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2BCC2352501FDD40043EF59 /* Debug */,
+				E2BCC2362501FDD40043EF59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2BCC2372501FDD40043EF59 /* Build configuration list for PBXNativeTarget "OrzMCAdminUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2BCC2382501FDD40043EF59 /* Debug */,
+				E2BCC2392501FDD40043EF59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E2BCC2042501FDD20043EF59 /* Project object */;
+}

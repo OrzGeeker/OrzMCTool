@@ -1,2 +1,3 @@
-# OrzMCTool
-Minecraft 服务器管理工具
+# OrzMCCore
+
+A description of this package.
