@@ -20,6 +20,7 @@ struct ContentView: View {
                         Text("Joker's Minecraft Server")
                         Text("jokerhub.cn")
                     }
+                    
                     Text("9ms")
                 }
                 Spacer()
@@ -27,9 +28,6 @@ struct ContentView: View {
             .navigationBarItems(trailing: Button("+", action: {
                 self.presented.toggle()
             }))
-            .alert(isPresented: $presented, content: {
-                Alert(title: Text("Server Info"))
-            })
             .navigationTitle("Minecraft Server")
         }
         
