@@ -7,13 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E246FB28251247B200CC4EA8 /* OrzMCServerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E246FB27251247B200CC4EA8 /* OrzMCServerDetailView.swift */; };
 		E25C4886250D2C6F00599FBC /* OrzMCCore in Resources */ = {isa = PBXBuildFile; fileRef = E25C4885250D2C6F00599FBC /* OrzMCCore */; };
+		E2655F12252426B100A1346A /* OrzMCServerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2655F11252426B100A1346A /* OrzMCServerInfoView.swift */; };
+		E2656029252476C900A1346A /* MCDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2656028252476C900A1346A /* MCDataStore.swift */; };
 		E2BCC2102501FDD20043EF59 /* OrzMCAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */; };
-		E2BCC2122501FDD20043EF59 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC2112501FDD20043EF59 /* ContentView.swift */; };
+		E2BCC2122501FDD20043EF59 /* OrzMCServerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC2112501FDD20043EF59 /* OrzMCServerList.swift */; };
 		E2BCC2142501FDD30043EF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BCC2132501FDD30043EF59 /* Assets.xcassets */; };
 		E2BCC2172501FDD30043EF59 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BCC2162501FDD30043EF59 /* Preview Assets.xcassets */; };
 		E2BCC2222501FDD40043EF59 /* OrzMCAdminTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC2212501FDD40043EF59 /* OrzMCAdminTests.swift */; };
 		E2BCC22D2501FDD40043EF59 /* OrzMCAdminUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC22C2501FDD40043EF59 /* OrzMCAdminUITests.swift */; };
+		E2DD73692513BA8700FDC917 /* OrzMCServerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD73682513BA8700FDC917 /* OrzMCServerItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,10 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E246FB27251247B200CC4EA8 /* OrzMCServerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCServerDetailView.swift; sourceTree = "<group>"; };
 		E25C4885250D2C6F00599FBC /* OrzMCCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OrzMCCore; path = ../../Sources/OrzMCCore; sourceTree = "<group>"; };
+		E2655F11252426B100A1346A /* OrzMCServerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCServerInfoView.swift; sourceTree = "<group>"; };
+		E2656028252476C900A1346A /* MCDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCDataStore.swift; sourceTree = "<group>"; };
 		E2BCC20C2501FDD20043EF59 /* OrzMCAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrzMCAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCAdminApp.swift; sourceTree = "<group>"; };
-		E2BCC2112501FDD20043EF59 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E2BCC2112501FDD20043EF59 /* OrzMCServerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCServerList.swift; sourceTree = "<group>"; };
 		E2BCC2132501FDD30043EF59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2BCC2162501FDD30043EF59 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2BCC2182501FDD30043EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -47,6 +54,7 @@
 		E2BCC2282501FDD40043EF59 /* OrzMCAdminUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OrzMCAdminUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BCC22C2501FDD40043EF59 /* OrzMCAdminUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCAdminUITests.swift; sourceTree = "<group>"; };
 		E2BCC22E2501FDD40043EF59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2DD73682513BA8700FDC917 /* OrzMCServerItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCServerItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +107,11 @@
 			children = (
 				E25C4885250D2C6F00599FBC /* OrzMCCore */,
 				E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */,
-				E2BCC2112501FDD20043EF59 /* ContentView.swift */,
+				E2BCC2112501FDD20043EF59 /* OrzMCServerList.swift */,
+				E2655F11252426B100A1346A /* OrzMCServerInfoView.swift */,
+				E2DD73682513BA8700FDC917 /* OrzMCServerItem.swift */,
+				E2656028252476C900A1346A /* MCDataStore.swift */,
+				E246FB27251247B200CC4EA8 /* OrzMCServerDetailView.swift */,
 				E2BCC2132501FDD30043EF59 /* Assets.xcassets */,
 				E2BCC2182501FDD30043EF59 /* Info.plist */,
 				E2BCC2152501FDD30043EF59 /* Preview Content */,
@@ -263,8 +275,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2BCC2122501FDD20043EF59 /* ContentView.swift in Sources */,
+				E2655F12252426B100A1346A /* OrzMCServerInfoView.swift in Sources */,
+				E2656029252476C900A1346A /* MCDataStore.swift in Sources */,
+				E2BCC2122501FDD20043EF59 /* OrzMCServerList.swift in Sources */,
+				E2DD73692513BA8700FDC917 /* OrzMCServerItem.swift in Sources */,
 				E2BCC2102501FDD20043EF59 /* OrzMCAdminApp.swift in Sources */,
+				E246FB28251247B200CC4EA8 /* OrzMCServerDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

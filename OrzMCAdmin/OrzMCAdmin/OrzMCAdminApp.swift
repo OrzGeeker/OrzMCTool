@@ -11,13 +11,18 @@ import SwiftUI
 struct OrzMCAdminApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                OrzMCServerList().preferredColorScheme(.dark).environmentObject(MCDataStore())
+            }
         }
     }
 }
 
 struct OrzMCAdminApp_Previews: PreviewProvider {
     static var previews: some View {
-        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+        NavigationView {
+            OrzMCServerList()
+        }
+        .preferredColorScheme(.dark)
     }
 }
