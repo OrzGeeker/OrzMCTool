@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    var base64EncodedImageData: Data? {
+    public var base64EncodedImageData: Data? {
         if let subStr = self.split(separator: ",").last {
             return Data(base64Encoded: String(subStr))
         } else {
