@@ -30,6 +30,10 @@ struct OrzMCServerDetailView: View {
                     
                 }, label: {
                     Text("Send RCON Command")
+                        .bold()
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
                 })
             }
         }

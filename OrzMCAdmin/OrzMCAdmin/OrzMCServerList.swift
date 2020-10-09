@@ -30,7 +30,8 @@ struct OrzMCServerList: View {
             }
         }
         .sheet(isPresented: $store.showServerInfoView, content: {
-            OrzMCServerInfoView().environmentObject(store)
+            OrzMCServerInfoView().preferredColorScheme(.dark)
+                .environmentObject(store)
         })
         .navigationBarItems(trailing: Button(action: {
             store.showServerInfoView.toggle()

@@ -3,14 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		E246FB28251247B200CC4EA8 /* OrzMCServerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E246FB27251247B200CC4EA8 /* OrzMCServerDetailView.swift */; };
-		E25C4886250D2C6F00599FBC /* OrzMCCore in Resources */ = {isa = PBXBuildFile; fileRef = E25C4885250D2C6F00599FBC /* OrzMCCore */; };
 		E2655F12252426B100A1346A /* OrzMCServerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2655F11252426B100A1346A /* OrzMCServerInfoView.swift */; };
 		E2656029252476C900A1346A /* MCDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2656028252476C900A1346A /* MCDataStore.swift */; };
+		E2969B3F25305F1D006F8B47 /* OrzMCCore in Frameworks */ = {isa = PBXBuildFile; productRef = E2969B3E25305F1D006F8B47 /* OrzMCCore */; };
+		E2969B472530607F006F8B47 /* OrzMCCore in Resources */ = {isa = PBXBuildFile; fileRef = E2969B462530607F006F8B47 /* OrzMCCore */; };
 		E2BCC2102501FDD20043EF59 /* OrzMCAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */; };
 		E2BCC2122501FDD20043EF59 /* OrzMCServerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BCC2112501FDD20043EF59 /* OrzMCServerList.swift */; };
 		E2BCC2142501FDD30043EF59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2BCC2132501FDD30043EF59 /* Assets.xcassets */; };
@@ -39,9 +40,9 @@
 
 /* Begin PBXFileReference section */
 		E246FB27251247B200CC4EA8 /* OrzMCServerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCServerDetailView.swift; sourceTree = "<group>"; };
-		E25C4885250D2C6F00599FBC /* OrzMCCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OrzMCCore; path = ../../Sources/OrzMCCore; sourceTree = "<group>"; };
 		E2655F11252426B100A1346A /* OrzMCServerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCServerInfoView.swift; sourceTree = "<group>"; };
 		E2656028252476C900A1346A /* MCDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCDataStore.swift; sourceTree = "<group>"; };
+		E2969B462530607F006F8B47 /* OrzMCCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OrzMCCore; path = ../Sources/OrzMCCore; sourceTree = "<group>"; };
 		E2BCC20C2501FDD20043EF59 /* OrzMCAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrzMCAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCAdminApp.swift; sourceTree = "<group>"; };
 		E2BCC2112501FDD20043EF59 /* OrzMCServerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrzMCServerList.swift; sourceTree = "<group>"; };
@@ -62,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2969B3F25305F1D006F8B47 /* OrzMCCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +87,7 @@
 		E2BCC2032501FDD20043EF59 = {
 			isa = PBXGroup;
 			children = (
+				E2969B462530607F006F8B47 /* OrzMCCore */,
 				E2BCC20E2501FDD20043EF59 /* OrzMCAdmin */,
 				E2BCC2202501FDD40043EF59 /* OrzMCAdminTests */,
 				E2BCC22B2501FDD40043EF59 /* OrzMCAdminUITests */,
@@ -105,7 +108,6 @@
 		E2BCC20E2501FDD20043EF59 /* OrzMCAdmin */ = {
 			isa = PBXGroup;
 			children = (
-				E25C4885250D2C6F00599FBC /* OrzMCCore */,
 				E2BCC20F2501FDD20043EF59 /* OrzMCAdminApp.swift */,
 				E2BCC2112501FDD20043EF59 /* OrzMCServerList.swift */,
 				E2655F11252426B100A1346A /* OrzMCServerInfoView.swift */,
@@ -161,6 +163,9 @@
 			dependencies = (
 			);
 			name = OrzMCAdmin;
+			packageProductDependencies = (
+				E2969B3E25305F1D006F8B47 /* OrzMCCore */,
+			);
 			productName = OrzMCAdmin;
 			productReference = E2BCC20C2501FDD20043EF59 /* OrzMCAdmin.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +237,9 @@
 				Base,
 			);
 			mainGroup = E2BCC2032501FDD20043EF59;
+			packageReferences = (
+				E2969B3D25305F1D006F8B47 /* XCRemoteSwiftPackageReference "OrzMCTool" */,
+			);
 			productRefGroup = E2BCC20D2501FDD20043EF59 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -250,7 +258,7 @@
 			files = (
 				E2BCC2172501FDD30043EF59 /* Preview Assets.xcassets in Resources */,
 				E2BCC2142501FDD30043EF59 /* Assets.xcassets in Resources */,
-				E25C4886250D2C6F00599FBC /* OrzMCCore in Resources */,
+				E2969B472530607F006F8B47 /* OrzMCCore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +608,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E2969B3D25305F1D006F8B47 /* XCRemoteSwiftPackageReference "OrzMCTool" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OrzGeeker/OrzMCTool.git";
+			requirement = {
+				branch = spm;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2969B3E25305F1D006F8B47 /* OrzMCCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2969B3D25305F1D006F8B47 /* XCRemoteSwiftPackageReference "OrzMCTool" */;
+			productName = OrzMCCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E2BCC2042501FDD20043EF59 /* Project object */;
 }

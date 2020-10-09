@@ -36,14 +36,14 @@ open class MCQuery {
     /// - Parameters:
     ///   - host: 查询的MC服务器主机，可以是域名或者IP地址
     ///   - port: 端口号
-    init(host: String, port: Int32 = MCQuery.defaultQueryPort) {
+    open init(host: String, port: Int32 = MCQuery.defaultQueryPort) {
         self.host = host
         self.port = port
         self.sessionID = 1
     }
     
     /// 与Minecraft服务器进行握手，建立UDP连接
-    func handshake() throws {
+    open func handshake() throws {
         
         guard let client = self.client else {
             throw MCQueryError.socketCreateFailed

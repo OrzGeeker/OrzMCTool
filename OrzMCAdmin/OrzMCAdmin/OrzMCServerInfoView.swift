@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OrzMCCore
 
 struct OrzMCServerInfoView: View {
     
