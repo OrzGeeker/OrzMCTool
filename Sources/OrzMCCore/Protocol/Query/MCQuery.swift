@@ -13,9 +13,9 @@
 import Foundation
 import Socket
 
-open class MCQuery {
+public final class MCQuery {
     
-    static let defaultQueryPort: Int32 = 25565
+    public static let defaultQueryPort: Int32 = 25565
     
     // 主机地址/域名
     var host: String

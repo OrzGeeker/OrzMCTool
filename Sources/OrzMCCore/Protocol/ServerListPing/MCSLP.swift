@@ -12,9 +12,9 @@
 import Foundation
 import Socket
 
-open class MCSLP {
+public final class MCSLP {
     
-    static let defaultPort: Int32 = 25565
+    class let defaultPort: Int32 = 25565
     // 主机地址/域名
     var host: String
     // 端口号

@@ -14,7 +14,7 @@
 import Foundation
 import Socket
 
-open class MCRCON {
+public final class MCRCON {
 
     /// Minecraft服务器默认RCON服务端口
     static let defaultRCONPort: Int32 = 25575
