@@ -9,17 +9,14 @@ import SwiftUI
 
 struct OrzMCServerDetailView: View {
     
+    @State var server: MCServerInfo?
     @State var rconCmd: String = ""
     
     var body: some View {
         VStack {
-            OrzMCServerItem()
+            OrzMCServerItem(server: server)
                 .padding()
-            
-            HStack {
-                Text("Query Info")
-            }
-            
+
             Spacer()
             
             VStack {

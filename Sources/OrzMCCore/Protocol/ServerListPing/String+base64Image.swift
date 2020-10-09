@@ -8,8 +8,8 @@
 
 import Foundation
 
-public extension String {
-    public var base64EncodedImageData: Data? {
+extension String {
+    var base64EncodedImageData: Data? {
         if let subStr = self.split(separator: ",").last {
             return Data(base64Encoded: String(subStr))
         } else {

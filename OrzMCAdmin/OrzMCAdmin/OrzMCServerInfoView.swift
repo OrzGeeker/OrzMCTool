@@ -23,7 +23,7 @@ struct OrzMCServerInfoView: View {
                 Text("查询Minecraft服务器")
                     .font(.headline)
                 TextField("输入域名或IP地址", text: $host)
-                    .keyboardType(.alphabet)
+                    .keyboardType(.asciiCapable)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
                 TextField("SLP服务端口号，默认为:\(MCSLP.defaultPort)", text: $slpPort)
@@ -48,11 +48,19 @@ struct OrzMCServerInfoView: View {
             
             if self.host.count > 0 {
                 let query = MCQuery(host: self.host, port: queryPort)
+                let slp = MCSLP(host: self.host, port: slpPort)
                 do {
+                    // Query Info Request
                     try query.handshake()
                     let fullStatus = try query.fullStatus()
                     let basicStatus = try query.basicStatus()
-                    let server = MCServerInfo(id: store.servers.count, host: self.host, slpPort: slpPort, queryPort: queryPort, rconPort: rconPort, basicStatus: basicStatus, fullStatus: fullStatus)
+                    
+                    // SLP Info Request
+                    try slp.handshake()
+                    let (statusJSONString, pingMs) = try slp.status()
+                    
+                    // Create a Server
+                    let server = MCServerInfo(id: store.servers.count, host: self.host, slpPort: slpPort, queryPort: queryPort, rconPort: rconPort, basicStatus: basicStatus, fullStatus: fullStatus, pingMs: pingMs, statusJSONString: statusJSONString)
                     store.servers.append(server)
                 } catch let error {
                     print("\(error.localizedDescription)")

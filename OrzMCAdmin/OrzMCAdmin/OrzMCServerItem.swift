@@ -14,18 +14,36 @@ struct OrzMCServerItem: View {
     var body: some View {
         VStack {
             HStack {
-                Image(systemName: "questionmark.square.dashed")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 64, height: 64, alignment: .center)
-                
-                if let basicStatus = server?.basicStatus {
-                    Text("\(basicStatus.MOTD)")
+                if let imageData = server?.slpStatus()?.favicon.base64EncodedImageData,
+                   let uiImage = UIImage(data: imageData) {
+                    Image(uiImage: uiImage)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 64, height: 64, alignment: .center)
+                } else {
+                    Image(systemName: "questionmark.square.dashed")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 64, height: 64, alignment: .center)
                 }
-                
+                VStack(alignment: .leading) {
+                    if let name = server?.basicStatus?.MOTD.MODT?.string {
+                        Text(name)
+                    }
+                    HStack {
+                        if let version = server?.slpStatus()?.version {
+                            Text("\(version.name)(\(version.protocol))")
+                        }
+                        
+                        if let players = server?.slpStatus()?.players {
+                            Text("\(players.online)/\(players.max)")
+                        }
+                    }
+                }
                 Spacer()
-                
-                Text("9ms")
+                if let pingMs = server?.pingMs {
+                    Text("\(pingMs)ms")
+                }
             }
         }
     }

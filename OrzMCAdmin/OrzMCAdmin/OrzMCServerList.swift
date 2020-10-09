@@ -10,13 +10,13 @@ import SwiftUI
 struct OrzMCServerList: View {
     
     @EnvironmentObject private var store: MCDataStore
-
+    
     var body: some View {
         VStack {
             if store.servers.count > 0 {
                 List {
                     ForEach(store.servers) { (server) in
-                        NavigationLink(destination: OrzMCServerDetailView()) {
+                        NavigationLink(destination: OrzMCServerDetailView(server: server)) {
                             OrzMCServerItem(server: server)
                         }
                     }
@@ -38,9 +38,7 @@ struct OrzMCServerList: View {
         }, label: {
             Image(systemName: "plus.circle")
                 .imageScale(.large)
-        })
-        .frame(width: 44, height: 44, alignment: .center)
-        )
+        }).frame(width: 44, height: 44, alignment: .center))
         .navigationTitle("Minecraft Server")
     }
 }
