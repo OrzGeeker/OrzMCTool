@@ -21,7 +21,7 @@ struct OrzMCAdminApp: App {
 struct OrzMCAdminApp_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            OrzMCServerList()
+            OrzMCServerList().environmentObject(MCDataStore())
         }
         .preferredColorScheme(.dark)
     }

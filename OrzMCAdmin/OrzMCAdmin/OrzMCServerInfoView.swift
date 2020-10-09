@@ -33,8 +33,12 @@ struct OrzMCServerInfoView: View {
                     .keyboardType(.numberPad)
                 TextField("RCON服务端口号，默认为:\(Self.defaultPort)", text: $rconPort)
                     .keyboardType(.numberPad)
-                
             }
+            Button(action: {
+                store.showServerInfoView.toggle()
+            }, label: {
+                Text("确定")
+            })
         }
         .padding()
         .onDisappear(perform: {
@@ -47,6 +51,9 @@ struct OrzMCServerInfoView: View {
                 let server = MCServerInfo(id: store.servers.count, host: self.host, slpPort: slpPort, queryPort: queryPort, rconPort: rconPort)
                 store.servers.append(server)
             }
+        })
+        .onTapGesture(count: 1, perform: {
+            UIApplication.shared.windows.first?.endEditing(true)
         })
     }
 }

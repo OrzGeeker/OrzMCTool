@@ -14,9 +14,10 @@ struct OrzMCServerItem: View {
     var body: some View {
         VStack {
             HStack {
-                Image("start")
-                    .frame(width: 64, height: 64, alignment: .leading)
-                    .border(Color.red, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
+                Image(systemName: "questionmark.square.dashed")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 64, height: 64, alignment: .center)
                 VStack(alignment: .leading) {
                     Text("Joker's Minecraft Server")
                         .padding(EdgeInsets(top: 0, leading: 5, bottom: 5, trailing: 5))

@@ -10,8 +10,7 @@ import SwiftUI
 struct OrzMCServerList: View {
     
     @EnvironmentObject private var store: MCDataStore
-    
-    @State var presented = false
+
     var body: some View {
         VStack {
             if store.servers.count > 0 {
@@ -23,16 +22,24 @@ struct OrzMCServerList: View {
                     }
                 }
             } else {
-                Text("暂无服务器信息")
+                VStack {
+                    Text("暂无服务器信息")
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0))
+                    Text("可通过右上角\"+\"按钮进行添加")
+                }
             }
         }
-        .padding()
-        .sheet(isPresented: $presented, content: {
-            OrzMCServerInfoView()
+        .sheet(isPresented: $store.showServerInfoView, content: {
+            OrzMCServerInfoView().environmentObject(store)
         })
-        .navigationBarItems(trailing: Button("+", action: {
-            self.presented.toggle()
-        }))
+        .navigationBarItems(trailing: Button(action: {
+            store.showServerInfoView.toggle()
+        }, label: {
+            Image(systemName: "plus.circle")
+                .imageScale(.large)
+        })
+        .frame(width: 44, height: 44, alignment: .center)
+        )
         .navigationTitle("Minecraft Server")
     }
 }

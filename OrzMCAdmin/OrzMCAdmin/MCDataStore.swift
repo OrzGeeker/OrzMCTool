@@ -2,7 +2,8 @@
 import Combine
 
 final class MCDataStore: ObservableObject {
-   @Published var servers: [MCServerInfo] = [MCServerInfo]()
+    @Published var servers: [MCServerInfo] = [MCServerInfo]()
+    @Published var showServerInfoView = false
 }
 
 struct MCServerInfo: Identifiable {
