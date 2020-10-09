@@ -37,7 +37,7 @@ open class MCRCON {
     /// - Parameters:
     ///   - host: Minecraft 服务端的主机地址可以是域名或者IP格式
     ///   - port: 米呢craft RCON服务所在的端口号
-    open init(host: String, port: Int32 = MCRCON.defaultRCONPort) {
+    public init(host: String, port: Int32 = MCRCON.defaultRCONPort) {
         self.host = host
         self.port = port
         self.requestID = 0
@@ -49,7 +49,7 @@ open class MCRCON {
     ///   - cmd: 发送给RCON服务的 Minecraft控制台命令
     /// - Throws: 发生错误时会抛出异常供上层处理
     /// - Returns: 通过RCON服务执行Minecraft控制台命令的执行结果返回
-    open func loginAndSendCmd(password: String, cmd: String) throws -> String? {
+    public func loginAndSendCmd(password: String, cmd: String) throws -> String? {
         
         guard let client = self.client else {
             throw MCRCONError.socketCreateFailed
@@ -79,7 +79,7 @@ open class MCRCON {
     /// - Parameter cmd: Minecraft控制台命令
     /// - Throws: 发生错误时会抛出异常供上层处理
     /// - Returns: 执行Minecraft控制台命令的执行结果返回
-    open func sendCmd(_ cmd: String) throws -> String? {
+    public func sendCmd(_ cmd: String) throws -> String? {
         
         guard let client = self.client else {
             throw MCRCONError.socketCreateFailed

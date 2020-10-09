@@ -29,12 +29,12 @@ open class MCSLP {
     /// - Parameters:
     ///   - host: 查询的MC服务器主机，可以是域名或者ip地址
     ///   - port: 端口号
-    open init(host: String, port: Int32 = MCSLP.defaultPort) {
+    public init(host: String, port: Int32 = MCSLP.defaultPort) {
         self.host = host
         self.port = port
     }
     
-    open func handshake() throws {
+    public func handshake() throws {
         
         guard let client = self.client else {
             throw MCSLPError.socketCreateFailed
@@ -52,7 +52,7 @@ open class MCSLP {
         try client.write(from: handshakePacket.data)
     }
     
-    open func status() throws -> (status: String?, ping: Int) {
+    public func status() throws -> (status: String?, ping: Int) {
         
         guard let client = self.client else {
             throw MCSLPError.socketCreateFailed
@@ -80,7 +80,7 @@ open class MCSLP {
         return (status: jsonStr, ping: ping)
     }
     
-    open func ping() throws -> Int {
+    public func ping() throws -> Int {
         
         guard let client = self.client else {
             throw MCSLPError.socketCreateFailed

@@ -36,7 +36,7 @@ open class MCQuery {
     /// - Parameters:
     ///   - host: 查询的MC服务器主机，可以是域名或者IP地址
     ///   - port: 端口号
-    open init(host: String, port: Int32 = MCQuery.defaultQueryPort) {
+    public init(host: String, port: Int32 = MCQuery.defaultQueryPort) {
         self.host = host
         self.port = port
         self.sessionID = 1
