@@ -1,5 +1,6 @@
 
 import Combine
+import OrzMCCore
 
 final class MCDataStore: ObservableObject {
     @Published var servers: [MCServerInfo] = [MCServerInfo]()
@@ -12,4 +13,8 @@ struct MCServerInfo: Identifiable {
     var slpPort: Int32
     var queryPort: Int32
     var rconPort: Int32
+    
+    var basicStatus: MCServerBasicStatus?
+    var fullStatus: MCServerFullStatus?
+    
 }

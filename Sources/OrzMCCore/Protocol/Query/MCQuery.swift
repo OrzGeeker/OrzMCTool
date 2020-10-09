@@ -15,7 +15,7 @@ import Socket
 
 public final class MCQuery {
     
-    class let defaultQueryPort: Int32 = 25565
+    static public let defaultQueryPort: Int32 = 25565
     
     // 主机地址/域名
     var host: String
@@ -43,7 +43,7 @@ public final class MCQuery {
     }
     
     /// 与Minecraft服务器进行握手，建立UDP连接
-    open func handshake() throws {
+    public func handshake() throws {
         
         guard let client = self.client else {
             throw MCQueryError.socketCreateFailed
@@ -66,7 +66,7 @@ public final class MCQuery {
     }
     
     /// 查询Minecraft服务器基本状态
-    open func basicStatus() throws -> MCServerBasicStatus? {
+    public func basicStatus() throws -> MCServerBasicStatus? {
         
         guard let token = self.token else {
             throw MCQueryError.handshakeFailed
@@ -90,7 +90,7 @@ public final class MCQuery {
     
     
     /// 查询Minecraft服务器详情状态
-    open func fullStatus() throws -> MCServerFullStatus? {
+    public func fullStatus() throws -> MCServerFullStatus? {
         
         guard let token = self.token else {
             throw MCQueryError.handshakeFailed

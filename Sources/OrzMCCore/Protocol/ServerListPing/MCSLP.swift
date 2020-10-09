@@ -14,7 +14,7 @@ import Socket
 
 public final class MCSLP {
     
-    class let defaultPort: Int32 = 25565
+    static public let defaultPort: Int32 = 25565
     // 主机地址/域名
     var host: String
     // 端口号

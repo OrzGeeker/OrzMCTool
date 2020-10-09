@@ -17,7 +17,7 @@ import Socket
 public final class MCRCON {
 
     /// Minecraft服务器默认RCON服务端口
-    static let defaultRCONPort: Int32 = 25575
+    static public let defaultRCONPort: Int32 = 25575
     
     /// 主机地址/域名
     var host: String
