@@ -15,7 +15,7 @@ import Socket
 
 public final class MCQuery {
     
-    public static let defaultQueryPort: Int32 = 25565
+    class let defaultQueryPort: Int32 = 25565
     
     // 主机地址/域名
     var host: String
