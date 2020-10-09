@@ -11,7 +11,7 @@ import Foundation
 
 /// Minecraft服务器基本信息数据
 public struct MCServerBasicStatus {
-    let MOTD: String
+    public let MOTD: String
     let gameType: String
     let map: String
     let numplayers: String

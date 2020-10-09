@@ -18,11 +18,9 @@ struct OrzMCServerItem: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 64, height: 64, alignment: .center)
-                VStack(alignment: .leading) {
-                    Text("Joker's Minecraft Server")
-                        .padding(EdgeInsets(top: 0, leading: 5, bottom: 5, trailing: 5))
-                    Text("jokerhub.cn")
-                        .padding(EdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5))
+                
+                if let basicStatus = server?.basicStatus {
+                    Text("\(basicStatus.MOTD)")
                 }
                 
                 Spacer()
